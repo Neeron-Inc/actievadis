@@ -17,6 +17,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::controller(ActivityController::class)->group(function () {
+    Route::get('/overview', 'index')->name('overview');
+    Route::get('/activity/create', 'create')->name('activities.create');
+    Route::post('/activity', 'store')->name('activities.store');
+});
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
