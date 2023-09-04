@@ -16,7 +16,6 @@ class ActivityFactory extends Factory
      */
     public function definition(): array
     {
-        // price with 2 decimals
         return [
             'name' => $this->faker->word,
             'description' => $this->faker->text,
