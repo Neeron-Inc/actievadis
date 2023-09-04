@@ -4,6 +4,9 @@
     <section class="pt-4 pb-4 bg-gray-100 h-auto">
         <div class="max-w-9xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+                <div class="flex justify-end m-5">
+                    <a href="{{ route('activities.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Activiteit aanmaken</a>
+                </div>
                 <table class="w-auto">
                     <thead>
                     <tr>
@@ -25,15 +28,15 @@
                         <tr>
                             <th class="px-4 py-2">{{$activity->name}}</th>
                             <td class="px-4 py-2">{{$activity->location}}</td>
-                            <td class="px-4 py-2">{{$activity->food}}</td>
+                            <td class="px-4 py-2">{{$activity->food ? "Ja" : "Nee"}}</td>
                             <td class="px-4 py-2">{{$activity->price}}</td>
                             <td class="px-4 py-2">{{$activity->description}}</td>
-                            <td class="px-4 py-2">{{$activity->start_date}}</td>
-                            <td class="px-4 py-2">{{$activity->end_date}}</td>
+                            <td class="px-4 py-2">{{ date('d-m-Y', strtotime($activity->start_date)) }}</td>
+                            <td class="px-4 py-2">{{ date('d-m-Y', strtotime($activity->end_date)) }}</td>
                             <td class="px-4 py-2">{{$activity->max_participants}}</td>
                             <td class="px-4 py-2">{{$activity->min_participants}}</td>
                             <td class="px-4 py-2">{{$activity->image}}</td>
-                            <td class="px-4 py-2">{{$activity->needs}}</td>
+                            <td class="px-4 py-2">{{$activity->needs ?? "geen"}}</td>
                         </tr>
                     @endforeach
                     </tbody>
