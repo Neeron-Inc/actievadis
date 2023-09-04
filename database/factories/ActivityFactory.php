@@ -16,7 +16,7 @@ class ActivityFactory extends Factory
      */
     public function definition(): array
     {
-        //put start date either a bit before the now date or a bit later randomly
+        // price with 2 decimals
         return [
             'name' => $this->faker->word,
             'description' => $this->faker->text,
@@ -24,7 +24,7 @@ class ActivityFactory extends Factory
             'start_date' => $this->faker->dateTimeBetween('-2 month', '+1 month'),
             'end_date' => $this->faker->dateTimeBetween('-1 month', '+1 month'),
             'food' => $this->faker->boolean,
-            'price' => $this->faker->randomFloat,
+            'price' => $this->faker->randomFloat(2),
             'max_participants' => $this->faker->randomNumber,
             'min_participants' => $this->faker->randomNumber,
             'image' => $this->faker->word,
