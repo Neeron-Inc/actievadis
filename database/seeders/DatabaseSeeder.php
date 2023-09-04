@@ -13,6 +13,12 @@ class DatabaseSeeder extends Seeder
         User::factory(10)->create();
         Activity::factory(10)->create();
 
+        User::factory(1)->create([
+            'email' => 'admin@neeron.com',
+            'is_admin' => true,
+            'password' => bcrypt('password'),
+        ]);
+
         $users = \App\Models\User::all();
         Activity::all()->each(function ($activity) use ($users) {
             $activity->users()->attach(
