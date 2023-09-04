@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\activityController;
+use App\Http\Controllers\ActivityController;
 
 /*
 |--------------------------------------------------------------------------
