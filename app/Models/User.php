@@ -18,10 +18,8 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
 
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
+    protected $protected = [
+        'id',
     ];
 
     protected $hidden = [
@@ -42,5 +40,10 @@ class User extends Authenticatable
     public function activities(): BelongsToMany
     {
         return $this->belongsToMany(Activity::class);
+    }
+
+    public function is_admin(): bool
+    {
+        return $this->is_admin;
     }
 }
