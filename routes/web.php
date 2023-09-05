@@ -20,5 +20,5 @@ Route::middleware([
 Route::controller(ActivityController::class)->group(function () {
     Route::get('/activities', 'index')->name('activity.overview');
     Route::get('/activity/{id}', 'show')->name('activity.show');
-    Route::post('/activity/{id}/register', 'register')->name('activity.register');
+    Route::post('/activity/{activity}/register', 'register')->name('activity.register');
 });

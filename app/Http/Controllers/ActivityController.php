@@ -21,11 +21,10 @@ class ActivityController extends Controller
         return view('activity.show', ['activity' => $activity]);
     }
 
-    public function register($id)
+    public function register(Activity $activity)
     {
-        $activity = Activity::find($id);
         $activity->users()->attach(auth()->user());
 
-        return redirect()->route('actvity.show', ['id' => $id]);
+        return redirect()->route('activity.show', ['id' => $activity->id]);
     }
 }
