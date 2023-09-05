@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Activity;
+use Illuminate\Http\Request;
 
 class ActivityController extends Controller
 {
@@ -12,8 +13,6 @@ class ActivityController extends Controller
         return view('activity.overview', [
             'activities' => Activity::where('start_date', '>', now())->get(),
         ]);
-        $activity = Activity::all();
-        return view('activity.overview', ['activity' => $activity]);
     }
 
     public function show($id)
