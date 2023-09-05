@@ -4,7 +4,6 @@
     <section class="pt-4 pb-4 bg-gray-100 h-auto">
         <div class="max-w-9xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                @dd($activities)
                 <div class="flex justify-end m-5">
                     <a href="{{ route('activities.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Activiteit aanmaken</a>
                 </div>
