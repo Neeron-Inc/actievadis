@@ -3,8 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ActivityController;
 
-Route::controller(ActivityController::class)->group(function () {
-    Route::get('/overview', 'index')->name('overview');
+Route::get('/', function () {
+    return view('welcome');
 });
 
 Route::middleware([
@@ -18,7 +18,7 @@ Route::middleware([
 });
 
 Route::controller(ActivityController::class)->group(function () {
-    Route::get('/overview', 'index')->name('overview');
-    Route::get('/overview/{id}', 'show')->name('activity');
-    Route::post('/overview/{id}/submit/', 'submit')->name('submit');
+    Route::get('/activities', 'index')->name('activity.overview');
+    Route::get('/activity/{id}', 'show')->name('activity.show');
+    Route::post('/activity/{id}/register', 'register')->name('activity.register');
 });
