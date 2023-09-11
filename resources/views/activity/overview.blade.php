@@ -23,7 +23,7 @@
                     <tbody>
                     @foreach ($activities as $activity)
                         <tr>
-                            <th class="px-4 py-2">{{$activity->name}}</th>
+                            <th class="px-4 py-2"><a href="{{ route('activity.show', $activity->id) }} ">{{$activity->name}}</a></th>
                             <td class="px-4 py-2">{{$activity->location}}</td>
                             <td class="px-4 py-2">{{$activity->food ? "Ja" : "Nee"}}</td>
                             <td class="px-4 py-2">{{$activity->price}}</td>
