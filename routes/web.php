@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\ActivityController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ActivityController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,12 +18,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::controller(ActivityController::class)->group(function () {
-    Route::get('/overview', 'index')->name('overview');
-    Route::get('/activity/create', 'create')->name('activities.create');
-    Route::post('/activity', 'store')->name('activities.store');
-});
-
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -32,4 +26,16 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+});
+
+Route::controller(ActivityController::class)->group(function () {
+    Route::get('/activities', 'index')->name('activity.overview');
+    Route::get('/activity/{id}', 'show')->name('activity.show');
+    Route::post('/activity/{activity}/register', 'register')->name('activity.register');
+    Route::get('/activity/create', 'create')->name('activities.create');
+    Route::post('/activity', 'store')->name('activities.store');
+    // edit route and delete route
+    Route::get('/activity/{activity}/edit', 'edit')->name('activity.edit');
+    Route::post('/activity/{activity}/edit', 'update')->name('activity.update');
+    Route::post('/activity/{activity}/delete', 'destroy')->name('activity.destroy');
 });
