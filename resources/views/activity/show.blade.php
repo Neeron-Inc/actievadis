@@ -6,8 +6,18 @@
             <img class="h-[600px] w-[600px] ml-[650px] mt-24 absolute" src="{{$activity->image}}" alt="Hey cassandra">
             <p class="pt-44 text-[#f5af00]">Samen met je collega's!</p>
             <h2 class="text-6xl text-white pb-4">{{$activity->name}}</h2>
-            <p class="text-white w-8/12 mb-16">Locatie: {{$activity->location}} <br> Eten: {{$activity->food ? "Ja" : "Nee"}} <br> Prijs: {{$activity->price}} <br> Beschijving: {{$activity->description}} <br><br> 
-            Begintijd: {{$activity->start_date}} <br> Eindtijd: {{$activity->end_date}} <br> Max deelnemers: {{$activity->max_participants}} <br> Min deelnemers: {{$activity->min_participants}} <br> Benodigdheden: {{$activity->needs}}</p>
+            <div class="text-white w-8/12 mb-16 flex flex-col">
+                <p class="mb-2">Locatie: {{$activity->location}}</p>
+                <p class="mb-2">Eten: {{$activity->food ? "Ja" : "Nee"}}</p>
+                <p class="mb-2">Prijs: {{$activity->price}}</p>
+                <p class="mb-2">Begintijd: {{$activity->start_date}}</p>
+                <p class="mb-2">Eindtijd: {{$activity->end_date}}</p>
+                <p class="mb-2">deelnemers: {{$activity->min_participants}}tot {{$activity->max_participants}}</p>
+                @isset($activity->needs)
+                    <p class="mb-2">Benodigdheden: {{$activity->needs}}</p>
+                @endisset
+                <p class="mb-6">Beschijving: {{$activity->description}}</p>
+            </div>
             <div class="flex justify-content">
                 <form action="{{ route('activity.register', $activity) }}" method="POST">
                     @csrf
