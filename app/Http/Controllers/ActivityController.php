@@ -27,4 +27,10 @@ class ActivityController extends Controller
 
         return redirect()->route('activity.show', ['id' => $activity->id]);
     }
+
+    public function delete(Activity $activity)
+    {
+        $activity->delete();
+        return redirect()->route('activity.overview');
+    }
 }
