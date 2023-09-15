@@ -33,17 +33,17 @@
                 <img src="{{ asset("img/pijl.svg") }}" alt="">
             </div>
         </section>
-        <section class="flex gap-10 ease-in-out" id="card-container">
-            <x-card class="item"></x-card>
-            <x-card class="item"></x-card>
-            <x-card class="item"></x-card>
-            <x-card class="item"></x-card>
-            <x-card class="item"></x-card>
-            <x-card class="item"></x-card>
-            <x-card class="item"></x-card>
-            <x-card class="item"></x-card>
-            <x-card class="item"></x-card>
-            <x-card class="item"></x-card>
+        <section class="flex gap-10" id="card-container">
+            <x-card></x-card>
+            <x-card></x-card>
+            <x-card></x-card>
+            <x-card></x-card>
+            <x-card></x-card>
+            <x-card></x-card>
+            <x-card></x-card>
+            <x-card></x-card>
+            <x-card></x-card>
+            <x-card></x-card>
         </section>
     </main>
     
@@ -59,12 +59,44 @@
     </div>
 
     <script>
+        var cards = document.querySelectorAll("#card")
+        var count = 1
+        cards.forEach( (i) => {
+            i.name = count
+           i.style.order = count
+            count++
+        })
+
         document.querySelector("#left").addEventListener("click", () => {
-            
+            document.querySelector("#card[name='1']").style.transform = "scale(0.8)"
+            setTimeout(() => {
+            cards.forEach( (i) => {
+                if(i.name == "10") {
+                i.name = 1
+                i.style.order = 1
+                } else {
+                    i.style.order = parseInt(i.name) +1
+                    i.name = parseInt(i.name) +1
+                }
+            })
+            document.querySelector("#card[name='2']").style.transform = "scale(1)"
+            }, 150);
         })
 
         document.querySelector("#right").addEventListener("click", () => {
-           
+            document.querySelector("#card[name='1']").style.transform = "scale(0.8)"
+            setTimeout(() => {
+                cards.forEach( (i) => {
+                if(i.name == "1") {
+                i.name = 10
+                i.style.order = 10
+                } else {
+                    i.style.order = parseInt(i.name) -1
+                    i.name = parseInt(i.name) -1
+                }
+            })  
+            document.querySelector("#card[name='10']").style.transform = "scale(1)"
+            }, 150);
         })
     </script>
 
