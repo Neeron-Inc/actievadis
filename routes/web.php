@@ -21,13 +21,13 @@ function authRoutes()
 
     Route::controller(ActivityController::class)->group(function () {
         Route::get('/activities', 'index')->name('activity.overview');
-        Route::get('/activity/{id}', 'show')->name('activity.show');
         Route::post('/activity/{activity}/register', 'register')->name('activity.register');
-        Route::get('/activity/create', 'create')->name('activities.create');
-        Route::post('/activity', 'store')->name('activities.store');
+        Route::get('/activity/create', 'create')->name('activity.create');
+        Route::post('/activity', 'store')->name('activity.store');
         Route::get('/activity/{activity}/edit', 'edit')->name('activity.edit');
-        Route::post('/activity/{activity}/edit', 'update')->name('activity.update');
+        Route::patch('/activity/{activity}/edit', 'update')->name('activity.update');
         Route::post('/activity/{activity}/delete', 'destroy')->name('activity.destroy');
+        Route::get('/activity/{id}', 'show')->name('activity.show');
     });
 
     Route::controller(AdminController::class)->group(function () {

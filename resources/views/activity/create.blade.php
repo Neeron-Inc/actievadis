@@ -2,8 +2,9 @@
 
 @section('content')
     <div class="py-12 flex flex-col items-center">
+
         <h1 class="text-3xl font-bold mb-6">Activiteit aanmaken</h1>
-        <form class="flex flex-col gap-4" action="{{ route('activities.store') }}" method="post">
+        <form class="flex flex-col gap-4" action="{{ route('activity.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="name">Naam activiteit</label>
@@ -27,7 +28,7 @@
             </div>
             <div class="form-group">
                 <label for="food">Eten</label>
-                <input type="checkbox" class="form-control" id="food" name="food" placeholder="Eten" required>
+                <input type="checkbox" class="form-control" id="food" name="food" placeholder="Eten">
             </div>
             <div class="form-group">
                 <label for="price">Prijs</label>
@@ -43,10 +44,10 @@
             </div>
             <div class="form-group">
                 <label for="image">Afbeelding</label>
-                <input type="text" class="form-control" id="image" name="image" placeholder="Afbeelding">
+                <input type="file" class="form-control" id="image" name="image" placeholder="Afbeelding">
             </div>
             <div class="form-group">
-                <label for="needs">Benodigdheden</label>
+                <label for="needs">Benodigdheden (scheid per met comma)</label>
                 <input type="text" class="form-control" id="needs" name="needs" placeholder="Benodigdheden">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>

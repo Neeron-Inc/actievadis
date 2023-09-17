@@ -5,8 +5,8 @@
         <aside class="max-w-9xl mx-auto sm:px-6 lg:px-8">
             @if (Auth::user()->is_admin() || Auth::user()->id == $activity->user_id)
                 <div class="flex justify-end m-5">
-                    <a href="{{ route('activity.edit', $activity) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Activiteit aanpassen</a>
-                    <form action="{{ route('activity.destroy', $activity) }}" method="POST">
+                    <a href="{{ route('activity.edit', [$activity]) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Activiteit aanpassen</a>
+                    <form action="{{ route('activity.destroy', [$activity]) }}" method="POST">
                         @csrf
                         <x-danger-button type="submit">Activiteit verwijderen</x-danger-button>
                     </form>

@@ -5,7 +5,7 @@
         <div class="max-w-9xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="flex justify-end m-5">
-                    <a href="{{ route('activities.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Activiteit aanmaken</a>
+                    <a href="{{ route('activity.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Activiteit aanmaken</a>
                 </div>
                 <table class="w-auto">
                     <thead>
