@@ -104,7 +104,6 @@ class ActivityController extends Controller
 
     public function jsonEncode(string $needs): array
     {
-        //json encode
         $needs = json_encode($needs);
         return explode(",", $needs);
     }
