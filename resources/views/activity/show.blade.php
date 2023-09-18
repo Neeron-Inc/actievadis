@@ -12,7 +12,7 @@
                 <p class="mb-2">Prijs: {{$activity->price}}</p>
                 <p class="mb-2">Begintijd: {{$activity->start_date}}</p>
                 <p class="mb-2">Eindtijd: {{$activity->end_date}}</p>
-                <p class="mb-2">deelnemers: {{$activity->min_participants}}tot {{$activity->max_participants}}</p>
+                <p class="mb-2">deelnemers: {{$activity->min_participants}} tot {{$activity->max_participants}}</p>
                 @isset($activity->needs)
                     <p class="mb-2">Benodigdheden: {{$activity->needs}}</p>
                 @endisset
@@ -29,6 +29,6 @@
                     <x-delete-button></x-delete-button>
                 </form>
             </div>
-        </article> 
+        </article>
     </aside>
 @endsection

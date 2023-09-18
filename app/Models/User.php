@@ -22,6 +22,14 @@ class User extends Authenticatable
         'id',
     ];
 
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'is_admin',
+        'profile_photo_path',
+    ];
+
     protected $hidden = [
         'password',
         'remember_token',
