@@ -64,7 +64,7 @@ class ActivityController extends Controller
 
     public function update(Activity $activity, Request $request): RedirectResponse
     {
-        Activity::create([
+        $activity->update([
             'name' => $request->input('name'),
             'description' => $request->input('description'),
             'start_date' => $request->input('start_date'),
@@ -76,12 +76,11 @@ class ActivityController extends Controller
             'min_participants' => $request->input('min_participants'),
             'image' => $request->file('image') ? Storage::disk('public')->put('images', $request->file('image')) : $activity->image,
             'needs' => $request->input('needs') ? $this->jsonEncode($request->input('needs')) : $activity->needs,
-        ])->save();
-
-        $activity->save();
+        ]);
 
         return redirect()->route('activity.show', ['activity' => $activity]);
     }
+
 
     public function destroy(Activity $activity): RedirectResponse
     {
