@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <aside class="z-0 mt-24 pb-28 bg-[#0f132f] w-8/12 h-auto">
+    <aside class="z-0 mt-24 mb-24 pb-28 bg-[#0f132f] w-8/12 h-auto">
         <article class="ml-96 text-xl">
             <img class="h-[600px] w-[600px] ml-[650px] mt-24 absolute" src="{{$activity->image}}" alt="Hey cassandra">
             <p class="pt-44 text-[#f5af00]">Samen met je collega's!</p>
