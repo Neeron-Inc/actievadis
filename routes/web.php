@@ -23,6 +23,7 @@ function authRoutes()
         Route::get('/activities', 'index')->name('activity.overview');
         Route::get('/activity/{id}', 'show')->name('activity.show');
         Route::post('/activity/{activity}/register', 'register')->name('activity.register');
+        Route::delete('/activity/{activity}/delete', 'delete')->name('activity.delete');
     });
 
     Route::controller(AdminController::class)->group(function () {

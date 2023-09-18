@@ -1,49 +1,34 @@
 @extends('layouts.app')
 
 @section('content')
-    <article class="pt-4 pb-4 bg-red-100 h-auto">
-        <aside class="max-w-9xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <table class="w-auto">
-                    <thead>
-                    <tr>
-                        <th class="px-4 py-2">Naam activiteit</th>
-                        <th class="px-4 py-2">Locatie</th>
-                        <th class="px-4 py-2">Eten(bool)</th>
-                        <th class="px-4 py-2">Kosten (double)</th>
-                        <th class="px-2 py-2">Omschrijving</th>
-                        <th class="px-4 py-2">Begintijd</th>
-                        <th class="px-4 py-2">Eindtijd</th>
-                        <th class="px-4 py-2">Max deelnemers</th>
-                        <th class="px-4 py-2">Min deelnemers</th>
-                        <th class="px-4 py-2">Afbeelding</th>
-                        <th class="px-4 py-2">Benodigdheden</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th class="px-4 py-2">{{$activity->name}}</th>
-                        <td class="px-4 py-2">{{$activity->location}}</td>
-                        <td class="px-4 py-2">{{$activity->food}}</td>
-                        <td class="px-4 py-2">{{$activity->price}}</td>
-                        <td class="px-4 py-2">{{$activity->description}}</td>
-                        <td class="px-4 py-2">{{$activity->start_date}}</td>
-                        <td class="px-4 py-2">{{$activity->end_date}}</td>
-                        <td class="px-4 py-2">{{$activity->max_participants}}</td>
-                        <td class="px-4 py-2">{{$activity->min_participants}}</td>
-                        <td class="px-4 py-2">{{$activity->image}}</td>
-                        <td class="px-4 py-2">{{$activity->needs}}</td>
-                    </tr>
-                    </tbody>
-                </table>
-                <x-danger-button>
-                    <a href="{{ route('activity.overview') }}">Terug naar activiteiten</a>
-                </x-danger-button>
+    <aside class="z-0 mt-24 mb-24 pb-28 bg-[#0f132f] w-8/12 h-auto">
+        <article class="ml-96 text-xl">
+            <img class="h-[600px] w-[600px] ml-[650px] mt-24 absolute" src="{{$activity->image}}" alt="Hey cassandra">
+            <p class="pt-44 text-[#f5af00]">Samen met je collega's!</p>
+            <h2 class="text-6xl text-white pb-4">{{$activity->name}}</h2>
+            <div class="text-white w-8/12 mb-16 flex flex-col">
+                <p class="mb-2">Locatie: {{$activity->location}}</p>
+                <p class="mb-2">Eten: {{$activity->food ? "Ja" : "Nee"}}</p>
+                <p class="mb-2">Prijs: {{$activity->price}}</p>
+                <p class="mb-2">Begintijd: {{$activity->start_date}}</p>
+                <p class="mb-2">Eindtijd: {{$activity->end_date}}</p>
+                <p class="mb-2">deelnemers: {{$activity->min_participants}} tot {{$activity->max_participants}}</p>
+                @isset($activity->needs)
+                    <p class="mb-2">Benodigdheden: {{$activity->needs}}</p>
+                @endisset
+                <p class="mb-6">Beschijving: {{$activity->description}}</p>
+            </div>
+            <div class="flex justify-content">
                 <form action="{{ route('activity.register', $activity) }}" method="POST">
                     @csrf
-                    <x-button type="submit">Meedoen met activiteit</x-button>
+                    <x-button type="submit">Inschijven</x-button>
+                </form>
+                <form action="{{ route('activity.delete', $activity) }}" method="POST">
+                    @csrf
+                    @method('delete')
+                    <x-delete-button></x-delete-button>
                 </form>
             </div>
-        </aside>
-    </article>
+        </article>
+    </aside>
 @endsection

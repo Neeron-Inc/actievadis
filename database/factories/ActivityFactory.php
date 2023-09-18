@@ -26,7 +26,7 @@ class ActivityFactory extends Factory
             'price' => $this->faker->randomFloat(2),
             'max_participants' => $this->faker->randomNumber,
             'min_participants' => $this->faker->randomNumber,
-            'image' => $this->faker->word,
+            'image' => $this->faker->imageUrl(),
         ];
     }
 }
