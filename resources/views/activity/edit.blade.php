@@ -93,6 +93,16 @@
                     @enderror
                 </div>
                 <div class="mb-4">
+                    <label for="needs" class="sr-only">Needs</label>
+                    <input type="text" name="needs" id="needs" placeholder="Needs" class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('needs') border-red-500 @enderror" value="{{ is_array($activity->needs) ? rtrim(implode(',', $activity->needs), ',') : $activity->needs }}">
+                    @error('needs')
+                    <div class="text-red-500 mt-2 text-sm">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                </div>
+
+                <div class="mb-4">
                     <label for="image" class="sr-only">Afbeelding</label>
                     <input type="file" name="image" id="image" placeholder="Afbeelding" class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('image') border-red-500 @enderror" value="{{ $activity->image }}">
                     @error('image')

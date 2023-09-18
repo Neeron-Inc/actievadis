@@ -41,7 +41,7 @@
                         <td class="px-4 py-2">{{$activity->max_participants}}</td>
                         <td class="px-4 py-2">{{$activity->min_participants}}</td>
                         <td class="px-4 py-2">{{$activity->image}}</td>
-                        <td class="px-4 py-2">{{$activity->needs}}</td>
+                        <td class="px-4 py-2">@foreach($activity->needs as $requirement) {{$requirement}} @endforeach</td>
                     </tr>
                     </tbody>
                 </table>

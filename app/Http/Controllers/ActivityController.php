@@ -25,29 +25,25 @@ class ActivityController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
-        $activity = new Activity();
-        $activity->name = $request->input('name');
-        $activity->description = $request->input('description');
-        $activity->start_date = $request->input('start_date');
-        $activity->end_date = $request->input('end_date');
-        $activity->location = $request->input('location');
-        if($request->input('food') == "on"){
-            $activity->food = true;
-        }else{
-            $activity->food = false;
-        }
-        $activity->price = $request->input('price');
-        $activity->max_participants = $request->input('max_participants');
-        $activity->min_participants = $request->input('min_participants');
-        $activity->image = Storage::disk('public')->put('images', $request->file('image'));
-        $activity->needs = $request->input('needs');
-        $activity->save();
+        Activity::create([
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+            'start_date' => $request->input('start_date'),
+            'end_date' => $request->input('end_date'),
+            'location' => $request->input('location'),
+            'food' => $request->input('food') == 'on' ? true : false,
+            'price' => $request->input('price'),
+            'max_participants' => $request->input('max_participants'),
+            'min_participants' => $request->input('min_participants'),
+            'image' => Storage::disk('public')->put('images', $request->file('image')),
+            'needs' => $this->jsonEncode($request->input('needs')),
+        ])->save();
+
         return redirect()->route('activity.overview');
     }
 
-    public function show($id): View
+    public function show(Activity $activity): View
     {
-        $activity = Activity::find($id);
         return view('activity.show', ['activity' => $activity]);
     }
 
@@ -55,44 +51,40 @@ class ActivityController extends Controller
     {
         $activity->users()->attach(auth()->user());
 
-        return redirect()->route('activity.show', ['id' => $activity->id]);
+        return redirect()->route('activity.show', ['activity' => $activity]);
     }
 
-    public function edit($id): View
+    public function edit(Activity $activity): View
     {
-        $activity = Activity::find($id);
-
         $activity->start_date = $this->formatDate($activity->start_date);
         $activity->end_date = $this->formatDate($activity->end_date);
 
         return view('activity.edit', ['activity' => $activity]);
     }
 
-    public function update(Request $request, $id): RedirectResponse
+    public function update(Activity $activity, Request $request): RedirectResponse
     {
-        $activity = Activity::find($id);
-        $activity->name = $request->input('name');
-        $activity->description = $request->input('description');
-        $activity->start_date = $request->input('start_date');
-        $activity->end_date = $request->input('end_date');
-        $activity->location = $request->input('location');
-        if($request->input('food') == "on"){
-            $activity->food = true;
-        }else{
-            $activity->food = false;
-        }
-        $activity->price = $request->input('price');
-        $activity->max_participants = $request->input('max_participants');
-        $activity->min_participants = $request->input('min_participants');
-        $activity->image = Storage::disk('public')->put('images', $request->file('image'));
-        $activity->needs = $this->seperateNeeds($request->input('needs'));
+        Activity::create([
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+            'start_date' => $request->input('start_date'),
+            'end_date' => $request->input('end_date'),
+            'location' => $request->input('location'),
+            'food' => $request->input('food') == 'on' ? true : false,
+            'price' => $request->input('price'),
+            'max_participants' => $request->input('max_participants'),
+            'min_participants' => $request->input('min_participants'),
+            'image' => $request->file('image') ? Storage::disk('public')->put('images', $request->file('image')) : $activity->image,
+            'needs' => $this->jsonEncode($request->input('needs')),
+        ])->save();
+
         $activity->save();
-        return redirect()->route('activity.show', ['id' => $activity->id]);
+
+        return redirect()->route('activity.show', ['activity' => $activity]);
     }
 
-    public function destroy($id): RedirectResponse
+    public function destroy(Activity $activity): RedirectResponse
     {
-        $activity = Activity::find($id);
         $activity->delete();
         return redirect()->route('activity.overview');
     }

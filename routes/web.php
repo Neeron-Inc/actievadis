@@ -27,7 +27,7 @@ function authRoutes()
         Route::get('/activity/{activity}/edit', 'edit')->name('activity.edit');
         Route::patch('/activity/{activity}/edit', 'update')->name('activity.update');
         Route::post('/activity/{activity}/delete', 'destroy')->name('activity.destroy');
-        Route::get('/activity/{id}', 'show')->name('activity.show');
+        Route::get('/activity/{activity}', 'show')->name('activity.show');
     });
 
     Route::controller(AdminController::class)->group(function () {
