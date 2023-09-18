@@ -98,4 +98,10 @@ class ActivityController extends Controller
         $needs = json_encode($needs);
         return explode(",", $needs);
     }
+
+    public function delete(Activity $activity)
+    {
+        $activity->delete();
+        return redirect()->route('activity.overview');
+    }
 }
