@@ -4,10 +4,6 @@ use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ActivityController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -16,6 +12,8 @@ Route::middleware([
 
 function authRoutes()
 {
+    Route::get('/', fn() => view('welcome'))->name('home');
+
     Route::get('/dashboard', fn() => redirect()->route('activity.overview'))
         ->name('dashboard');
 
