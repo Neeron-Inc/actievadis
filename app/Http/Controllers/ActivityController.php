@@ -47,13 +47,6 @@ class ActivityController extends Controller
         return view('activity.show', ['activity' => $activity]);
     }
 
-    public function register(Activity $activity): RedirectResponse
-    {
-        $activity->users()->attach(auth()->user());
-
-        return redirect()->route('activity.show', ['activity' => $activity]);
-    }
-
     public function edit(Activity $activity): View
     {
         $activity->start_date = $this->formatDate($activity->start_date);
@@ -97,6 +90,13 @@ class ActivityController extends Controller
     {
         $needs = json_encode($needs);
         return explode(",", $needs);
+    }
+
+    public function register(Activity $activity)
+    {
+        $activity->users()->attach(auth()->user());
+
+        return redirect()->route('activity.show', ['id' => $activity->id]);
     }
 
     public function delete(Activity $activity)
