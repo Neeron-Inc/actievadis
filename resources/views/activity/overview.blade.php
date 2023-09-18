@@ -36,7 +36,12 @@
                             <td class="px-4 py-2">{{$activity->max_participants}}</td>
                             <td class="px-4 py-2">{{$activity->min_participants}}</td>
                             <td class="px-4 py-2">{{$activity->image}}</td>
-                            <td class="px-4 py-2">{{$activity->needs ?? "geen"}}</td>
+                            <td class="px-4 py-2">
+                                {{ is_array($activity->needs) ? implode(' ', $activity->needs) : 'geen' }}
+                            </td>
+                            <td class="px-4 py-2">
+                                <a href="{{ route('activity.show', [$activity]) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Bekijk activiteit</a>
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>
