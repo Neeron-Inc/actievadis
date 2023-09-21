@@ -31,18 +31,20 @@
 
     <script>
         var cards = document.querySelectorAll("#card")
-        var count = 1
+        var count = 0
         cards.forEach( (i) => {
+            count++
             i.name = count
             i.style.order = count
-            count++
         })
+
+
 
         document.querySelector("#left").addEventListener("click", () => {
             document.querySelector("#card[name='1']").style.transform = "scale(0.8)"
             setTimeout(() => {
                 cards.forEach( (i) => {
-                    if(i.name == "10") {
+                    if(i.name == `${count}`) {
                         i.name = 1
                         i.style.order = 1
                     } else {
@@ -59,14 +61,14 @@
             setTimeout(() => {
                 cards.forEach( (i) => {
                     if(i.name == "1") {
-                        i.name = 10
-                        i.style.order = 10
+                        i.name = count
+                        i.style.order = count
                     } else {
                         i.style.order = parseInt(i.name) -1
                         i.name = parseInt(i.name) -1
                     }
                 })
-                document.querySelector("#card[name='10']").style.transform = "scale(1)"
+                document.querySelector(`#card[name='${count}']`).style.transform = "scale(1)"
             }, 150);
         })
     </script>
