@@ -37,7 +37,7 @@ class ActivityController extends Controller
             'min_participants' => $request->input('min_participants'),
             'image' => Storage::disk('public')->put('images', $request->file('image')),
             'needs' => $request->input('needs') ? $this->jsonEncode($request->input('needs')) : null,
-        ])->save();
+        ]);
 
         return redirect()->route('activity.overview');
     }
