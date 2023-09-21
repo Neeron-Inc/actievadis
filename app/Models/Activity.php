@@ -12,6 +12,10 @@ class Activity extends Model
 
     protected $guarded = ['id'];
 
+    protected $casts = [
+        'needs' => 'array',
+    ];
+
     public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class);
