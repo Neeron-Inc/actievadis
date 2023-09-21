@@ -4,10 +4,6 @@ use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ActivityController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -16,11 +12,14 @@ Route::middleware([
 
 function authRoutes()
 {
+    Route::get('/', fn() => view('activity.overview'))->name('home');
+
     Route::get('/dashboard', fn() => redirect()->route('activity.overview'))
         ->name('dashboard');
 
     Route::controller(ActivityController::class)->group(function () {
         Route::get('/activities', 'index')->name('activity.overview');
+        Route::get('/activity/{activity}', 'show')->name('activity.show');
         Route::post('/activity/{activity}/register', 'register')->name('activity.register');
         Route::get('/activity/create', 'create')->name('activity.create');
         Route::post('/activity', 'store')->name('activity.store');

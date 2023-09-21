@@ -5,9 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Activity;
 use Illuminate\Http\Request;
-use \Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Storage;
-use \Illuminate\View\View;
 
 class ActivityController extends Controller
 {
