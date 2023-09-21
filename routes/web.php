@@ -12,14 +12,14 @@ Route::middleware([
 
 function authRoutes()
 {
-    Route::get('/', fn() => view('welcome'))->name('home');
+    Route::get('/', fn() => view('activity.overview'))->name('home');
 
     Route::get('/dashboard', fn() => redirect()->route('activity.overview'))
         ->name('dashboard');
 
     Route::controller(ActivityController::class)->group(function () {
         Route::get('/activities', 'index')->name('activity.overview');
-        Route::get('/activity/{id}', 'show')->name('activity.show');
+        Route::get('/activity/{activity}', 'show')->name('activity.show');
         Route::post('/activity/{activity}/register', 'register')->name('activity.register');
         Route::delete('/activity/{activity}/delete', 'delete')->name('activity.delete');
     });
