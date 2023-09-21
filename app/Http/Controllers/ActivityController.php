@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Activity;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class ActivityController extends Controller
 {
@@ -89,14 +91,14 @@ class ActivityController extends Controller
         return explode(",", $needs);
     }
 
-    public function register(Activity $activity)
+    public function register(Activity $activity): RedirectResponse
     {
         $activity->users()->attach(auth()->user());
 
         return redirect()->route('activity.show', ['id' => $activity->id]);
     }
 
-    public function delete(Activity $activity)
+    public function delete(Activity $activity): RedirectResponse
     {
         $activity->delete();
         return redirect()->route('activity.overview');
