@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Activity;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class ActivityController extends Controller
 {
@@ -18,6 +19,7 @@ class ActivityController extends Controller
     public function show($id)
     {
         $activity = Activity::find($id);
+   
         return view('activity.show', ['activity' => $activity]);
     }
 
