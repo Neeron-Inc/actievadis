@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Activity;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class ActivityController extends Controller
@@ -82,8 +83,10 @@ class ActivityController extends Controller
 
     public function formatDate($date): string
     {
-        return date('Y-m-d', strtotime($date));
-    }
+        // return for example monday the 13th at 13:00
+
+        return date('l-dS \a\t H:i', strtotime($date));
+     }
 
     public function jsonEncode(string $needs): array
     {
