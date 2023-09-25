@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Activity;
+use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -83,9 +84,10 @@ class ActivityController extends Controller
 
     public function formatDate($date): string
     {
-        // return for example monday the 13th at 13:00
+        // return for example monday the 13th at 13:00 usiing Carbon
+        $formattedDate = Carbon::parse($date)->isoFormat('dddd Do [at] HH:mm');
 
-        return date('l-dS \a\t H:i', strtotime($date));
+
      }
 
     public function jsonEncode(string $needs): array
