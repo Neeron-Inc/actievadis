@@ -84,11 +84,8 @@ class ActivityController extends Controller
 
     public function formatDate($date): string
     {
-        // return for example monday the 13th at 13:00 usiing Carbon
-        $formattedDate = Carbon::parse($date)->isoFormat('dddd Do [at] HH:mm');
-
-
-     }
+        return date('Y-m-d', strtotime($date));
+    }
 
     public function jsonEncode(string $needs): array
     {
@@ -96,9 +93,9 @@ class ActivityController extends Controller
         return explode(",", $needs);
     }
 
-    public function register(Activity $activity): RedirectResponse
+    public function register(Activity $activity, string $comment = null): RedirectResponse
     {
-        $activity->users()->attach(auth()->user());
+        auth()->user()->participate($activity, $comment);
 
         return redirect()->route('activity.show', ['activity' => $activity]);
     }
