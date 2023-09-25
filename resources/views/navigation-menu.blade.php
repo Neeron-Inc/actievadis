@@ -3,13 +3,11 @@
     <div class="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between py-3">
             <!-- Home svg with text -->
-            <a href="{{route('activity.overview')}}" class="flex items-center">
-                <svg class="h-10 w-10 text-[#0F132F]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" clip-rule="evenodd"
-                        d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 101.414 1.414L4 10.414V17a1 1 0 001 1h10a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7zM12 16h-4v-4h4v4z" />
+            <a href="{{route('activity.overview')}}" class="flex items-center gap-4">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
                 </svg>
-
-                <h1 class="text-[#0F132F] font-bold text-2xl">Home</h1>
+                <h1 class="text-[#0F132F] font-bold text-xl">Home</h1>
             </a>
 
 
