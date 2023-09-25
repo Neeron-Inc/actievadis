@@ -64,7 +64,7 @@ class ActivityController extends Controller
             'start_date' => $request->input('start_date'),
             'end_date' => $request->input('end_date'),
             'location' => $request->input('location'),
-            'food' => $request->input('food') == 'on' ? true : false,
+            'food' => $request->input('food') == 'on',
             'price' => $request->input('price'),
             'max_participants' => $request->input('max_participants'),
             'min_participants' => $request->input('min_participants'),
