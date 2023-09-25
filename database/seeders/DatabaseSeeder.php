@@ -19,12 +19,5 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('password'),
         ]);
 
-        $users = \App\Models\User::all();
-        Activity::all()->each(function ($activity) use ($users) {
-            $activity->users()->attach(
-                $users->random(rand(1, 3))->pluck('id')->toArray()
-            );
-        });
-
     }
 }

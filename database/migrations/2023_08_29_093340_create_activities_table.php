@@ -22,18 +22,10 @@ return new class extends Migration {
             $table->json('needs')->nullable();
             $table->timestamps();
         });
-
-        Schema::create('activity_user', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('activity_id')->cascadeOnDelete();
-            $table->foreignId('user_id')->cascadeOnDelete();
-            $table->timestamps();
-        });
     }
 
     public function down(): void
     {
         Schema::dropIfExists('activities');
-        Schema::dropIfExists('activity_user');
     }
 };

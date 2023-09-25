@@ -16,8 +16,8 @@ class Activity extends Model
         'needs' => 'array',
     ];
 
-    public function users(): BelongsToMany
+    public function participants(): BelongsToMany
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(Participant::class);
     }
 }
