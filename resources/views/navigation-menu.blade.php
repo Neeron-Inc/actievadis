@@ -3,18 +3,18 @@
     <div class="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between py-3">
             <!-- Home svg with text -->
-            <div class="flex items-center">
+            <a href="{{route('activity.overview')}}" class="flex items-center">
                 <svg class="h-10 w-10 text-[#0F132F]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" clip-rule="evenodd"
                         d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 101.414 1.414L4 10.414V17a1 1 0 001 1h10a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7zM12 16h-4v-4h4v4z" />
                 </svg>
 
                 <h1 class="text-[#0F132F] font-bold text-2xl">Home</h1>
-            </div>
+            </a>
 
 
             <div class="hidden space-x-8 sm:flex">
-                <a href="{{ route('dashboard') }}">
+                <a href="{{ route('activity.overview') }}">
                     <x-application-mark class="block h-7 w-auto" />
                 </a>
             </div>
@@ -139,8 +139,8 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+            <x-responsive-nav-link href="{{ route('activity.overview') }}" :active="request()->routeIs('activity.overview')">
+                {{ __('activity.overview') }}
             </x-responsive-nav-link>
         </div>
 
