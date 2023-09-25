@@ -24,8 +24,7 @@
                     <x-button type="submit">Inschijven</x-button>
                 </form>
                 <form action="{{ route('activity.delete', $activity) }}" method="POST">
-                    @csrf
-                    @method('delete')
+                    @csrfg
                     <x-delete-button></x-delete-button>
                 </form>
             </div>
