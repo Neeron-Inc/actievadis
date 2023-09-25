@@ -12,12 +12,8 @@ Route::middleware([
 
 function authRoutes()
 {
-    Route::get('/', fn() => view('activity.overview'))->name('home');
-
-    Route::get('/dashboard', fn() => redirect()->route('activity.overview'))
-        ->name('dashboard');
-
     Route::controller(ActivityController::class)->group(function () {
+        Route::get('/', 'index');
         Route::get('/activities', 'index')->name('activity.overview');
         Route::get('/activity/{activity}', 'show')->name('activity.show');
         Route::post('/activity/{activity}/register', 'register')->name('activity.register');

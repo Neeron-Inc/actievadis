@@ -95,7 +95,7 @@ class ActivityController extends Controller
     {
         $activity->users()->attach(auth()->user());
 
-        return redirect()->route('activity.show', ['id' => $activity->id]);
+        return redirect()->route('activity.show', ['activity' => $activity]);
     }
 
     public function delete(Activity $activity): RedirectResponse
