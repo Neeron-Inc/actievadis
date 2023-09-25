@@ -12,8 +12,12 @@ class Activity extends Model
 
     protected $guarded = ['id'];
 
-    public function users(): BelongsToMany
+    protected $casts = [
+        'needs' => 'array',
+    ];
+
+    public function participants(): BelongsToMany
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(Participant::class);
     }
 }

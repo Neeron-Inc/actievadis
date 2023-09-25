@@ -7,7 +7,6 @@
             <div>
                 <img class="h-[100%] w-[1900px] ml-[35%] rounded-tr-[10%] rounded-bl-[10%]" src="{{$activity->image}}" alt="Hier komt een image">
             </div>
-
             <div>
                 <p class="text-[#f5af00] mt-[15%]">Samen met je collega's!</p>
                 <h2 class="text-5xl text-white pb-4">{{$activity->name}}</h2>

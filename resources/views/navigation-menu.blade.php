@@ -1,23 +1,23 @@
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
-            <div class="flex">
-                <!-- Logo -->
-                <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-application-mark class="block h-9 w-auto" />
-                    </a>
-                </div>
+    <div class="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between py-3">
+            <!-- Home svg with text -->
+            <a href="{{route('activity.overview')}}" class="flex items-center">
+                <svg class="h-10 w-10 text-[#0F132F]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 101.414 1.414L4 10.414V17a1 1 0 001 1h10a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7zM12 16h-4v-4h4v4z" />
+                </svg>
 
-                <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-                </div>
+                <h1 class="text-[#0F132F] font-bold text-2xl">Home</h1>
+            </a>
+
+
+            <div class="hidden space-x-8 sm:flex">
+                <a href="{{ route('activity.overview') }}">
+                    <x-application-mark class="block h-7 w-auto" />
+                </a>
             </div>
-
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <!-- Teams Dropdown -->
                 @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
@@ -139,8 +139,8 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+            <x-responsive-nav-link href="{{ route('activity.overview') }}" :active="request()->routeIs('activity.overview')">
+                {{ __('activity.overview') }}
             </x-responsive-nav-link>
         </div>
 

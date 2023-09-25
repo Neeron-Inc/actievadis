@@ -4,10 +4,6 @@ use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ActivityController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -16,14 +12,16 @@ Route::middleware([
 
 function authRoutes()
 {
-    Route::get('/dashboard', fn() => redirect()->route('activity.overview'))
-        ->name('dashboard');
-
     Route::controller(ActivityController::class)->group(function () {
+        Route::get('/', 'index');
         Route::get('/activities', 'index')->name('activity.overview');
-        Route::get('/activity/{id}', 'show')->name('activity.show');
         Route::post('/activity/{activity}/register', 'register')->name('activity.register');
-        Route::delete('/activity/{activity}/delete', 'delete')->name('activity.delete');
+        Route::get('/activity/create', 'create')->name('activity.create');
+        Route::post('/activity', 'store')->name('activity.store');
+        Route::get('/activity/{activity}/edit', 'edit')->name('activity.edit');
+        Route::patch('/activity/{activity}/edit', 'update')->name('activity.update');
+        Route::delete('/activity/{activity}/delete', 'destroy')->name('activity.delete');
+        Route::get('/activity/{activity}', 'show')->name('activity.show');
     });
 
     Route::controller(AdminController::class)->group(function () {
