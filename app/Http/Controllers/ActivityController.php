@@ -63,7 +63,7 @@ class ActivityController extends Controller
             'start_date' => $request->input('start_date'),
             'end_date' => $request->input('end_date'),
             'location' => $request->input('location'),
-            'food' => $request->input('food') == 'on' ? true : false,
+            'food' => $request->input('food') == 'on',
             'price' => $request->input('price'),
             'max_participants' => $request->input('max_participants'),
             'min_participants' => $request->input('min_participants'),
@@ -83,10 +83,8 @@ class ActivityController extends Controller
 
     public function formatDate($date): string
     {
-        // return for example monday the 13th at 13:00
-
-        return date('l-dS \a\t H:i', strtotime($date));
-     }
+        return date('Y-m-d', strtotime($date));
+    }
 
     public function jsonEncode(string $needs): array
     {

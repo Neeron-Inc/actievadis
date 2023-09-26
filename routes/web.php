@@ -19,8 +19,8 @@ function authRoutes()
         Route::get('/activity/create', 'create')->name('activity.create');
         Route::post('/activity', 'store')->name('activity.store');
         Route::get('/activity/{activity}/edit', 'edit')->name('activity.edit');
-        Route::patch('/activity/{activity}/edit', 'update')->name('activity.update');
         Route::delete('/activity/{activity}/delete', 'destroy')->name('activity.delete');
+        Route::put('/activity/{activity}/edit', 'update')->name('activity.update');
         Route::get('/activity/{activity}', 'show')->name('activity.show');
     });
 
