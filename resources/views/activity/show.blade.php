@@ -14,7 +14,7 @@
                     <p class="mb-2">Locatie: {{$activity->location}}</p>
                     <p class="mb-2">Eten: {{$activity->food ? "Ja" : "Nee"}}</p>
                     <p class="mb-2">Prijs: €{{$activity->price}}</p>
-                    
+
                     @if(date('d-m-Y', strtotime($activity->start_date)) == date('d-m-Y', strtotime($activity->end_date)))
                         <p class="mb-2">Wanneer begint het? <br> {{ date('l dS \a\t H:i', strtotime($activity->start_date)) }}</p>
                     @else
@@ -22,7 +22,7 @@
                         <p class="mb-2">wanneer eindigd het?: {{ date('d-m-Y h:i', strtotime($activity->end_date)) }}</p>
                     @endif
 
-                    <p class="mb-2">Ingeschreven deelnemers: {{$activity->users->count()}}</p>
+                    <p class="mb-2">Ingeschreven deelnemers: {{$activity->participants->count()}}</p>
 
                     @isset($activity->needs)
                         <p class="mb-2">Benodigdheden: {{$activity->needs}}</p>
