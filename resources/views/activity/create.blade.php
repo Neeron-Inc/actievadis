@@ -1,56 +1,67 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="py-12 flex flex-col items-center">
-
-        <h1 class="text-3xl font-bold mb-6">Activiteit aanmaken</h1>
-        <form class="flex flex-col gap-4" action="{{ route('activity.store') }}" method="post" enctype="multipart/form-data">
+    <div class="flex w-full bg-[#e2e8f0]">
+        <form class="flex w-full gap-4" action="{{ route('activity.store') }}" method="post" enctype="multipart/form-data">
             @csrf
-            <div class="form-group">
-                <label for="name">Naam activiteit</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="Naam activiteit" required>
+            <!-- Insert image here -->
+            <div class="w-1/2 flex flex-col items-center justify-center">
+                <svg data-darkreader-inline-stroke="" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="w-1/5 text-[#0F132F]">
+                    <path d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+                <div class="form-group">
+                    <label for="image">Afbeelding</label>
+                    <input type="file" class="form-control" id="image" name="image" placeholder="Afbeelding">
+                </div>
             </div>
-            <div class="form-group">
-                <label for="description">Omschrijving</label>
-                <input type="text" class="form-control" id="description" name="description" placeholder="Omschrijving" required>
+            <div class="w-1/2 grid grid-cols-2 gap-4 my-12">
+                <!-- activiteit aanmaken -->
+                <h1 class="text-[#0F132F] text-5xl col-span-2">Activiteit aanmaken</h1>
+                <div class="form-group">
+                    <label for="name">naam</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="location">locatie</label>
+                    <input type="text" class="form-control" id="location" name="location" required>
+                </div>
+                <div class="form-group">
+                    <label for="start_date">start datum</label>
+                    <input type="date" class="form-control" id="start_date" name="start_date" required>
+                </div>
+                <div class="form-group">
+                    <label for="end_date">eind datum</label>
+                    <input type="date" class="form-control" id="end_date" name="end_date" required>
+                </div>
+                <div class="form-group">
+                    <label for="food">eten</label>
+                    <select class="form-control" id="food" name="food" required>
+                        <option value="0">Nee</option>
+                        <option value="1">Ja</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="price">prijs</label>
+                    <input type="number" class="form-control" id="price" name="price" required>
+                </div>
+                <div class="form-group">
+                    <label for="min_participants">minimale deelnemers</label>
+                    <input type="number" class="form-control" id="min_participants" name="min_participants" required>
+                </div>
+                <div class="form-group">
+                    <label for="max_participants">maximale deelnemers</label>
+                    <input type="number" class="form-control" id="max_participants" name="max_participants" required>
+                </div>
+                <div class="form-group col-span-2">
+                    <label for="description">omschrijving</label>
+                    <input type="textarea" class="form-control" id="description" name="description" required>
+                </div>
+                <div class="form-group col-span-2">
+                    <label for="needs">benodigdheden</label>
+                    <input type="textarea" class="form-control" id="needs" name="needs">
+                </div>
+                <button type="submit" class="btn btn-primary w-auto px-4 py-2 border-2 border-black">toevoegen</button>
             </div>
-            <div class="form-group">
-                <label for="location">Locatie</label>
-                <input type="text" class="form-control" id="location" name="location" placeholder="Locatie" required>
-            </div>
-            <div class="form-group">
-                <label for="start_date">Start datum</label>
-                <input type="date" class="form-control" id="start_date" name="start_date" placeholder="Start datum" required>
-            </div>
-            <div class="form-group">
-                <label for="end_date">Eind datum</label>
-                <input type="date" class="form-control" id="end_date" name="end_date" placeholder="Eind datum" required>
-            </div>
-            <div class="form-group">
-                <label for="food">Eten</label>
-                <input type="checkbox" class="form-control" id="food" name="food" placeholder="Eten">
-            </div>
-            <div class="form-group">
-                <label for="price">Prijs</label>
-                <input type="number" class="form-control" id="price" name="price" placeholder="Prijs" required>
-            </div>
-            <div class="form-group">
-                <label for="max_participants">Max deelnemers</label>
-                <input type="number" class="form-control" id="max_participants" name="max_participants" placeholder="Max deelnemers" required>
-            </div>
-            <div class="form-group">
-                <label for="min_participants">Min deelnemers</label>
-                <input type="number" class="form-control" id="min_participants" name="min_participants" placeholder="Min deelnemers" required>
-            </div>
-            <div class="form-group">
-                <label for="image">Afbeelding</label>
-                <input type="file" class="form-control" id="image" name="image" placeholder="Afbeelding">
-            </div>
-            <div class="form-group">
-                <label for="needs">Benodigdheden (scheid per met comma)</label>
-                <input type="text" class="form-control" id="needs" name="needs" placeholder="Benodigdheden">
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
 @endsection

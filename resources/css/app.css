@@ -5,3 +5,16 @@
 [x-cloak] {
     display: none;
 }
+
+.form-group {
+    @apply flex flex-col;
+}
+
+/* Give all input forms transparent background, only an orange border at the bottom and remove the borders from the rest of the sides*/
+.form-control {
+    @apply border-b-2 border-[#f5af00] bg-transparent border-0 focus:ring-0;
+}
+
+.form-control[type="file"] {
+    @apply border-0 focus:ring-0;
+}
