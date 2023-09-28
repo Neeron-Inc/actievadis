@@ -5,7 +5,8 @@
         <article class="ml-[16%] pt-[%] text-xl flex flex-row-reverse">
 
             <div>
-                <img class="h-[100%] w-[1900px] ml-[35%] rounded-tr-[10%] rounded-bl-[10%]" src="{{$activity->image}}" alt="Hier komt een image">
+                <img class="h-[100%] w-[1900px] ml-[35%] rounded-tr-[10%] rounded-bl-[10%]" src="{{$activity->image}}"
+                     alt="Hier komt een image">
             </div>
             <div>
                 <p class="text-[#f5af00] mt-[15%]">Samen met je collega's!</p>
@@ -16,10 +17,13 @@
                     <p class="mb-2">Prijs: €{{$activity->price}}</p>
 
                     @if(date('d-m-Y', strtotime($activity->start_date)) == date('d-m-Y', strtotime($activity->end_date)))
-                        <p class="mb-2">Wanneer begint het? <br> {{ date('l dS \a\t H:i', strtotime($activity->start_date)) }}</p>
+                        <p class="mb-2">Wanneer begint het?
+                            <br> {{ date('l dS \a\t H:i', strtotime($activity->start_date)) }}</p>
                     @else
-                        <p class="mb-2">Wanneer begint het? {{ date('d-m-Y h:i', strtotime($activity->start_date)) }}</p>
-                        <p class="mb-2">wanneer eindigd het?: {{ date('d-m-Y h:i', strtotime($activity->end_date)) }}</p>
+                        <p class="mb-2">Wanneer begint
+                            het? {{ date('d-m-Y h:i', strtotime($activity->start_date)) }}</p>
+                        <p class="mb-2">wanneer eindigd
+                            het?: {{ date('d-m-Y h:i', strtotime($activity->end_date)) }}</p>
                     @endif
 
                     <p class="mb-2">Ingeschreven deelnemers: {{$activity->participants->count()}}</p>
@@ -31,10 +35,9 @@
                     <p class="mb-6">Beschijving: {{$activity->description}}</p>
                 </div>
                 <div class="pb-[15%] flex justify-content">
-                    <form action="{{ route('activity.register', $activity) }}" method="POST">
-                        @csrf
-                        <x-button type="submit">Inschijven</x-button>
-                    </form>
+
+                    <livewire:participate :activity="$activity"/>
+
                     @if(auth()->user()->is_admin)
                         <form action="{{ route('activity.delete', $activity) }}" method="POST">
                             @csrf

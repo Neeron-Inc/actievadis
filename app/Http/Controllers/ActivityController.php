@@ -94,6 +94,7 @@ class ActivityController extends Controller
 
     public function register(Activity $activity, string $comment = null): RedirectResponse
     {
+        dd($activity, $comment);
         auth()->user()->participate($activity, $comment);
 
         return redirect()->route('activity.show', ['activity' => $activity]);
