@@ -27,10 +27,9 @@
                     <p class="mb-6">{{$activity->description}}</p>
                 </div>
                 <div class="pb-[15%] flex justify-content">
-                    <form action="{{ route('activity.register', $activity) }}" method="POST">
-                        @csrf
-                        <x-button type="submit">Inschijven</x-button>
-                    </form>
+
+                    <livewire:participate :activity="$activity"/>
+
                     @if(auth()->user()->is_admin)
                     <form action="inshallah" method="POST">
                         @csrf
