@@ -1,4 +1,4 @@
-<main>
+<main class="z-50">
     <x-button wire:click="toggleShow">
         @if ($participates)
             {{ __('Uitschrijven') }}
