@@ -5,7 +5,7 @@
         <article class="ml-[16%] pt-[%] text-xl flex flex-row-reverse">
 
             <div>
-                <img class="h-[100%] w-[1900px] ml-[35%] rounded-tr-[10%] rounded-bl-[10%]" src="{{$activity->image}}" alt="Hier komt een image">
+                <img class="h-[100%] w-[1900px] ml-[35%] rounded-tr-[10%] rounded-bl-[10%]" src="{{ file_exists(public_path('storage/' . $activity->image)) ? asset("storage/" . $activity->image) : $activity->image }}" alt="Hier komt een image">
             </div>
             <div>
                 <p class="text-[#f5af00] mt-[15%]">Samen met je collega's!</p>
