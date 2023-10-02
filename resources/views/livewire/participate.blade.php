@@ -19,7 +19,7 @@
                 </p>
             </header>
 
-            <form wire:submit.prevent="participate">
+            <form wire:submit.prevent="participate" class="flex flex-col items-center">
                 @csrf
                 <textarea name="comment" id="comment" rows="4" placeholder="Opmerkingen"
                           class="w-full" wire:model="comment">
