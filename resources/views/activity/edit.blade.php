@@ -1,23 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="flex w-full bg-[#e2e8f0]">
+    <div>
         <form class="flex w-full gap-4" action="{{ route('activity.update', $activity->id) }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('PUT')
-
-            <div class="w-1/2 flex flex-col items-center justify-center bg-no-repeat bg-cover"  style="background-image: url({{ file_exists(public_path('storage/' . $activity->image)) ? asset("storage/" . $activity->image) : $activity->image }})">
-                <svg data-darkreader-inline-stroke="" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="w-1/5 text-[#0F132F]">
-                    <path d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" stroke-linecap="round" stroke-linejoin="round"></path>
-                </svg>
+            <div class="w-1/2"></div>
+            <div class="w-1/2 flex flex-col items-center justify-center bg-center bg-cover absolute h-screen top-0 z-0" id="bgimg" style="background-image: url({{ file_exists(public_path('storage/' . $activity->image)) ? asset("storage/" . $activity->image) : $activity->image }})">
                 <div class="form-group">
-                    <label for="image">Afbeelding</label>
-                    <input type="file" class="form-control" id="image" name="image" placeholder="Afbeelding">
+                    <input type="file" class="form-control hidden" id="image" name="image" placeholder="Afbeelding">
+                    <label class="bg-[#0F132F] rounded-full w-12 h-12 flex items-center justify-center absolute cursor-pointer bottom-5 right-5" for="image"><x-camera-icon></x-camera-icon></label>
                 </div>
             </div>
 
-            <div class="w-1/2 grid grid-cols-2 gap-4 my-12">
-                <h1 class="text-[#0F132F] text-5xl col-span-2">Activiteit aanpassen</h1>
+            <div class="w-1/2 grid grid-cols-2 gap-4 pt-12 px-10">
+                <h1 class="text-[#0F132F] text-5xl col-span-2 pb-12">Activiteit aanpassen</h1>
 
                 <div class="form-group">
                     <label for="name">naam</label>
@@ -62,18 +59,26 @@
                     <input type="number" class="form-control" id="max_participants" name="max_participants" value="{{ old('max_participants', $activity->max_participants) }}" required>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group col-span-2">
                     <label for="description">omschrijving</label>
-                    <input type="textarea" class="form-control" id="description" name="description" value="{{ old('description', $activity->description) }}" required>
+                    <input type="text" class="form-control" id="description" name="description" value="{{ old('description', $activity->description) }}" required />
                 </div>
 
-                <div class="form-group">
+                <div class="form-group col-span-2">
                     <label for="needs">benodigdheden</label>
-                    <input type="textarea" class="form-control" id="needs" name="needs" value="{{ old('needs', $activity->needs) }}">
+                    <input type="text" class="form-control" id="needs" name="needs" value="{{ old('needs', $activity->needs) }}" />
                 </div>
 
                 <button type="submit" class="btn btn-primary w-auto px-4 py-2 border-2 border-black">bijwerken</button>
             </div>
         </form>
     </div>
+    <script>
+        document.querySelector("#image").onchange = evt => {
+      const [file] = document.querySelector("#image").files
+      if (file) {
+        document.querySelector("#bgimg").style.backgroundImage = `url('${URL.createObjectURL(file)}')`
+      }
+    }
+        </script>
 @endsection

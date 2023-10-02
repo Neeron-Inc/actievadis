@@ -64,6 +64,9 @@ class ActivityController extends Controller
             abort(403);
         }
 
+        if ($activity->needs)
+            $activity->needs = implode(", ", $activity->needs);
+
         $activity->start_date = $this->formatDate($activity->start_date);
         $activity->end_date = $this->formatDate($activity->end_date);
 

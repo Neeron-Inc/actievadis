@@ -15,7 +15,7 @@
                     @if(date('d-m-Y', strtotime($activity->start_date)) == date('d-m-Y', strtotime($activity->end_date)))
                         <p class="mb-2 flex items-center"> <span class="text-[#f5af00] pr-1"><x-clock-icon></x-clock-icon></span> {{ date('d-F-Y \o\m H:i', strtotime($activity->start_date)) }} - {{ date('H:i', strtotime($activity->end_date)) }}</p>
                     @else
-                        <p class="mb-2 flex items-center"><span class="text-[#f5af00] pr-1"><x-clock-icon></x-clock-icon></span> {{ date('d-m-Y h:i', strtotime($activity->start_date)) }} - {{ date('d-m-Y h:i', strtotime($activity->end_date)) }}</p>
+                        <p class="mb-2 flex items-center"><span class="text-[#f5af00] pr-1"><x-clock-icon></x-clock-icon></span> {{ date('d-F-Y h:i', strtotime($activity->start_date)) }} tot {{ date('d-F-Y h:i', strtotime($activity->end_date)) }}</p>
                     @endif
 
                     <p class="mb-2 flex items-center"><span class="text-[#f5af00] pr-1"><x-group-icon></x-group-icon></span> {{$activity->participants->count()}}</p>

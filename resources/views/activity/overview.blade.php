@@ -8,7 +8,7 @@
                 <h1 class="text-5xl ml-36">Activiteiten</h1>
                 {{-- card --}}
                 <main class="absolute mt-20 gap-10 flex">
-                    <section class="flex self-end">
+                    <section class="flex self-end select-none">
                         <div class="w-12 h-12 rounded-full border-2 cursor-pointer flex justify-center items-center mr-2 border-[#0F132F]" id="left">
                             <img src="{{ asset("img/pijl.svg") }}" alt="" class="rotate-180">
                         </div>
