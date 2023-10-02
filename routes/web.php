@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Middleware\Admin;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ActivityController;
 
@@ -17,15 +18,17 @@ function authRoutes()
         Route::get('/activities', 'index')->name('activity.overview');
         Route::post('/activity/{activity}/register', 'register')->name('activity.register');
         Route::get('/activity/create', 'create')->name('activity.create');
-        Route::post('/activity', 'store')->name('activity.store');
-        Route::get('/activity/{activity}/edit', 'edit')->name('activity.edit');
-        Route::delete('/activity/{activity}/delete', 'destroy')->name('activity.delete');
-        Route::put('/activity/{activity}/edit', 'update')->name('activity.update');
+        Route::middleware(Admin::class)->group(function () {
+            Route::post('/activity', 'store')->name('activity.store');
+            Route::get('/activity/{activity}/edit', 'edit')->name('activity.edit');
+            Route::delete('/activity/{activity}/destroy', 'destroy')->name('activity.destroy');
+            Route::put('/activity/{activity}/update', 'update')->name('activity.update');
+        });
         Route::get('/activity/{activity}', 'show')->name('activity.show');
     });
 
     Route::controller(AdminController::class)->group(function () {
         Route::get('/admin', 'index')->name('admin.overview');
         Route::put('/admin/toggle/{user}', 'update')->name('admin.toggle');
-    });
+    })->middleware(Admin::class);
 }
