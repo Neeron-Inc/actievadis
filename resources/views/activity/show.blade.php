@@ -13,7 +13,7 @@
                     <p class="mb-2 flex items-center"><span class="text-[#f5af00] pr-1"><x-money-icon></x-money-icon></span> €{{$activity->price}}</p>
 
                     @if(date('d-m-Y', strtotime($activity->start_date)) == date('d-m-Y', strtotime($activity->end_date)))
-                        <p class="mb-2 flex items-center"> <span class="text-[#f5af00] pr-1"><x-clock-icon></x-clock-icon></span> {{ date('l dS \a\t H:i', strtotime($activity->start_date)) }} - {{ date('d-m-Y h:i', strtotime($activity->end_date)) }}</p>
+                        <p class="mb-2 flex items-center"> <span class="text-[#f5af00] pr-1"><x-clock-icon></x-clock-icon></span> {{ date('d-F-Y \o\m H:i', strtotime($activity->start_date)) }} - {{ date('H:i', strtotime($activity->end_date)) }}</p>
                     @else
                         <p class="mb-2 flex items-center"><span class="text-[#f5af00] pr-1"><x-clock-icon></x-clock-icon></span> {{ date('d-m-Y h:i', strtotime($activity->start_date)) }} - {{ date('d-m-Y h:i', strtotime($activity->end_date)) }}</p>
                     @endif
@@ -31,9 +31,8 @@
                     <livewire:participate :activity="$activity"/>
 
                     @if(auth()->user()->is_admin)
-                    <form action="inshallah" method="POST">
+                    <form action="{{ route('activity.update', $activity) }}" method="GET">
                         @csrf
-                        @method('update')
                         <x-edit-button></x-edit-button>
                     </form>
                         <form action="{{ route('activity.delete', $activity) }}" method="POST">
