@@ -27,11 +27,11 @@
                 </div>
                 <div class="form-group">
                     <label for="start_date">start datum</label>
-                    <input type="date" class="form-control" id="start_date" name="start_date" required>
+                    <input type="datetime-local" class="form-control" id="start_date" name="start_date" required>
                 </div>
                 <div class="form-group">
                     <label for="end_date">eind datum</label>
-                    <input type="date" class="form-control" id="end_date" name="end_date" required>
+                    <input type="datetime-local" class="form-control" id="end_date" name="end_date" required>
                 </div>
                 <div class="form-group">
                     <label for="food">eten</label>
