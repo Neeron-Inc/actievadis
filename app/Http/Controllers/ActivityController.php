@@ -52,7 +52,6 @@ class ActivityController extends Controller
 
     public function show(Activity $activity): View
     {
-        // explode $activity->needs to string if activity is not null
         if ($activity->needs)
             $activity->needs = implode(", ", $activity->needs);
 
