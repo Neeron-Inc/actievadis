@@ -22,6 +22,7 @@ function authRoutes()
         Route::delete('/activity/{activity}/delete', 'destroy')->name('activity.delete');
         Route::put('/activity/{activity}/edit', 'update')->name('activity.update');
         Route::get('/activity/{activity}', 'show')->name('activity.show');
+        Route::post('/activity/filter', 'filterOverview')->name('activity.filter');
     });
 
     Route::controller(AdminController::class)->group(function () {

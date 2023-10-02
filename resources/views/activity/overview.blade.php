@@ -27,7 +27,7 @@
         <section class="w-1/2 pr-20 mt-32">
             <!-- create activity -->
             <a href="{{route('activity.create')}}" class="mx-2 bg-[#0F132F] text-white py-2 px-8 float-right rounded-full">Create activity</a>
-            <button class="mx-2 bg-[#0F132F] text-white py-2 px-8 float-right rounded-full">Filters</button>
+            <livewire:filter/>
         </section>
     </div>
 

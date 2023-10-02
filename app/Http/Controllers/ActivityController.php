@@ -18,6 +18,31 @@ class ActivityController extends Controller
         ]);
     }
 
+    public function filterOverview(Request $request)
+    {
+        if($request->input('all') && $request->input('participating')) {
+            $activities = Activity::participating()->get();
+            return redirect()->route('activity.overview', [
+                'activities' => $activities]);
+
+        } elseif($request->input('all')) {
+            $activities = Activity::all();
+            return redirect()->route('activity.overview', [
+                'activities' => $activities]);
+
+        } elseif($request->input('participating')) {
+            $activities = Activity::participating()->upcoming()->get();
+            return redirect()->route('activity.overview', [
+                'activities' => $activities]);
+
+        } elseif($request->input(null)) {
+            $activities = Activity::upcoming()->get();
+            return redirect()->route('activity.overview', [
+                'activities' => $activities]);
+
+        }
+    }
+
     public function create(): View
     {
         return view('activity.create');
