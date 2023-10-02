@@ -5,3 +5,15 @@
 [x-cloak] {
     display: none;
 }
+
+.form-group {
+    @apply flex flex-col;
+}
+
+.form-control {
+    @apply border-b-2 border-[#f5af00] bg-transparent border-0 focus:ring-0;
+}
+
+.form-control[type="file"] {
+    @apply border-0 focus:ring-0;
+}
