@@ -52,12 +52,7 @@
                 </div>
             </div>
 
-<<<<<<< Updated upstream
-            <div class="w-1/3 bg-center bg-cover rounded-tr-[50px] rounded-bl-[50px] translate-x-[50%]"
-                 style="background-image: url('{{ file_exists(public_path('storage/' . $activity->image)) ? asset("storage/" . $activity->image) : $activity->image }}')"></div>
-=======
             <div class="w-4/12 bg-center bg-cover rounded-tr-[50px] rounded-bl-[50px] translate-x-[50%]" style="background-image: url('{{ file_exists(public_path('storage/' . $activity->image)) ? asset("storage/" . $activity->image) : $activity->image }}')"></div>
->>>>>>> Stashed changes
 
         </article>
     </aside>
