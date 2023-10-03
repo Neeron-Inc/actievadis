@@ -13,9 +13,15 @@
                     <p class="mb-2 flex items-center"><span class="text-[#f5af00] pr-1"><x-money-icon></x-money-icon></span> €{{$activity->price}}</p>
 
                     @if(date('d-m-Y', strtotime($activity->start_date)) == date('d-m-Y', strtotime($activity->end_date)))
-                        <p class="mb-2 flex items-center"> <span class="text-[#f5af00] pr-1"><x-clock-icon></x-clock-icon></span> {{ date('d-F-Y \o\m H:i', strtotime($activity->start_date)) }} - {{ date('H:i', strtotime($activity->end_date)) }}</p>
+                        <p class="mb-2 flex items-center">
+                            <span class="text-[#f5af00] pr-1"><x-clock-icon></x-clock-icon></span>
+                            {{ \Carbon\Carbon::parse($activity->start_date)->isoFormat('D MMMM YYYY [om] H:mm') }} tot {{ \Carbon\Carbon::parse($activity->end_date)->isoFormat('H:mm') }}
+                        </p>
                     @else
-                        <p class="mb-2 flex items-center"><span class="text-[#f5af00] pr-1"><x-clock-icon></x-clock-icon></span> {{ date('d-m-Y h:i', strtotime($activity->start_date)) }} - {{ date('d-m-Y h:i', strtotime($activity->end_date)) }}</p>
+                        <p class="mb-2 flex items-center">
+                            <span class="text-[#f5af00] pr-1"><x-clock-icon></x-clock-icon></span>
+                            {{ \Carbon\Carbon::parse($activity->start_date)->isoFormat('D MMMM YYYY [om] H:mm') }} tot {{ \Carbon\Carbon::parse($activity->end_date)->isoFormat('D MMMM YYYY [om] H:mm') }}
+                        </p>
                     @endif
 
                     <p class="mb-2 flex items-center"><span class="text-[#f5af00] pr-1"><x-group-icon></x-group-icon></span> {{$activity->participants->count()}}</p>
@@ -31,10 +37,10 @@
                     <livewire:participate :activity="$activity"/>
 
                     @if(auth()->user()->is_admin)
-                    <form action="{{ route('activity.update', $activity) }}" method="GET">
-                        @csrf
-                        <x-edit-button></x-edit-button>
-                    </form>
+                        <form action="{{ route('activity.update', $activity) }}" method="GET">
+                            @csrf
+                            <x-edit-button></x-edit-button>
+                        </form>
                         <form action="{{ route('activity.delete', $activity) }}" method="POST">
                             @csrf
                             @method('delete')
