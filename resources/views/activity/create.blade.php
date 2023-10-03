@@ -2,18 +2,23 @@
 
 @section('content')
     <div>
-        <form class="flex w-full gap-4" action="{{ route('activity.store') }}" method="post" enctype="multipart/form-data">
+        <form class="flex w-full gap-4" action="{{ route('activity.store') }}" method="post"
+              enctype="multipart/form-data">
             @csrf
-            <!-- Insert image here -->
             <div class="w-1/2"></div>
-            <div class="w-1/2 flex flex-col items-center justify-center bg-center bg-cover absolute h-screen top-0 z-0" id="bgimg" style="background-image: url(https://vtb-league.com/app/plugins/photonic/include/images/placeholder.png)">
+            <div class="w-1/2 flex flex-col items-center justify-center bg-center bg-cover absolute h-screen top-0 z-0"
+                 id="bgimg"
+                 style="background-image: url(https://vtb-league.com/app/plugins/photonic/include/images/placeholder.png)">
                 <div class="form-group">
                     <input type="file" class="form-control hidden" id="image" name="image" placeholder="Afbeelding">
-                    <label class="bg-[#0F132F] rounded-full w-12 h-12 flex items-center justify-center absolute cursor-pointer bottom-5 right-5" for="image"><x-camera-icon></x-camera-icon></label>
+                    <label
+                        class="bg-[#0F132F] rounded-full w-12 h-12 flex items-center justify-center absolute cursor-pointer bottom-5 right-5"
+                        for="image">
+                        <x-camera-icon></x-camera-icon>
+                    </label>
                 </div>
             </div>
             <div class="w-1/2 grid grid-cols-2 gap-4 pt-12 px-10">
-                <!-- activiteit aanmaken -->
                 <h1 class="text-[#0F132F] text-5xl col-span-2 pb-12">Activiteit aanmaken</h1>
                 <div class="form-group">
                     <label for="name">naam</label>
@@ -52,7 +57,8 @@
                 </div>
                 <div class="form-group col-span-2">
                     <label for="description">omschrijving</label>
-                    <textarea type="textarea" class="form-control" id="description" rows="3" name="description" required></textarea>
+                    <textarea type="textarea" class="form-control" id="description" rows="3" name="description"
+                              required></textarea>
                 </div>
                 <div class="form-group col-span-2">
                     <label for="needs">benodigdheden</label>
@@ -63,11 +69,11 @@
         </form>
     </div>
     <script>
-    document.querySelector("#image").onchange = evt => {
-  const [file] = document.querySelector("#image").files
-  if (file) {
-    document.querySelector("#bgimg").style.backgroundImage = `url('${URL.createObjectURL(file)}')`
-  }
-}
+        document.querySelector("#image").onchange = evt => {
+            const [file] = document.querySelector("#image").files
+            if (file) {
+                document.querySelector("#bgimg").style.backgroundImage = `url('${URL.createObjectURL(file)}')`
+            }
+        }
     </script>
 @endsection
