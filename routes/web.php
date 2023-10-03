@@ -17,8 +17,8 @@ function authRoutes()
         Route::get('/', 'index');
         Route::get('/activities', 'index')->name('activity.overview');
         Route::post('/activity/{activity}/register', 'register')->name('activity.register');
-        Route::get('/activity/create', 'create')->name('activity.create');
         Route::middleware(Admin::class)->group(function () {
+            Route::get('/activity/create', 'create')->name('activity.create');
             Route::post('/activity', 'store')->name('activity.store');
             Route::get('/activity/{activity}/edit', 'edit')->name('activity.edit');
             Route::delete('/activity/{activity}/destroy', 'destroy')->name('activity.destroy');
