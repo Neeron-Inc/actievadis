@@ -11,8 +11,7 @@ class Admin
     public function handle(Request $request, Closure $next): Response
     {
         if (!$request->user()->is_admin()) {
-            return abort(403)
-                ->header('Refresh', '10;url=' . route('home'));
+            return abort(403);
         }
 
         return $next($request);

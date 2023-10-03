@@ -27,8 +27,8 @@ function authRoutes()
         Route::get('/activity/{activity}', 'show')->name('activity.show');
     });
 
-    Route::controller(AdminController::class)->group(function () {
+    Route::middleware(Admin::class)->controller(AdminController::class)->group(function () {
         Route::get('/admin', 'index')->name('admin.overview');
         Route::put('/admin/toggle/{user}', 'update')->name('admin.toggle');
-    })->middleware(Admin::class);
+    });
 }
