@@ -20,19 +20,11 @@ class ActivityController extends Controller
 
     public function create(): View
     {
-        if (!auth()->user()->is_admin) {
-            abort(403);
-        }
-
         return view('activity.create');
     }
 
     public function store(Request $request): RedirectResponse
     {
-        if (!auth()->user()->is_admin) {
-            abort(403);
-        }
-
         Activity::create([
             'name' => $request->input('name'),
             'description' => $request->input('description'),
@@ -60,10 +52,6 @@ class ActivityController extends Controller
 
     public function edit(Activity $activity): View
     {
-        if (!auth()->user()->is_admin) {
-            abort(403);
-        }
-
         $activity->start_date = $this->formatDate($activity->start_date);
         $activity->end_date = $this->formatDate($activity->end_date);
 
@@ -92,10 +80,6 @@ class ActivityController extends Controller
 
     public function destroy(Activity $activity): RedirectResponse
     {
-        if (!auth()->user()->is_admin) {
-            abort(403);
-        }
-
         $activity->delete();
         return redirect()->route('activity.overview');
     }
