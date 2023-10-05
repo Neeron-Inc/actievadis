@@ -17,7 +17,7 @@
         <!-- Styles -->
         @livewireStyles
     </head>
-    <body class="font-sans antialiased bg-gray-100">
+    <body class="font-sans antialiased bg-gray-100 overflow-x-hidden">
         <x-banner />
 
         <div class="h-screen flex flex-col">
