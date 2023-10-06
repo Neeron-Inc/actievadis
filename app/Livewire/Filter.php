@@ -2,7 +2,6 @@
 
 namespace App\Livewire;
 
-use App\Http\Controllers\ActivityController;
 use App\Models\Activity;
 use Livewire\Component;
 
@@ -16,7 +15,7 @@ class Filter extends Component
 
     public function mount()
     {
-        $this->all = request()->input('all') == 'on';``
+        $this->all = request()->input('all') == 'on';
         $this->participating = request()->input('participating') == 'on';
     }
 
