@@ -13,37 +13,13 @@ use Illuminate\View\View;
 
 class ActivityController extends Controller
 {
-    public function index(?collection $activities): View
+    public function index(): View
     {
-        if(!$activities) {
-            $activities = Activity::all();
-        }
+//        dd(request()->all());
+
         return view('activity.overview', [
             'activities' => Activity::where('start_date', '>', now())->get(),
         ]);
-    }
-
-    public function filterOverview(Request $request)
-    {
-        if($request->input('all') && $request->input('participating')) {
-            // get all activities where user participated and the upcoming activities where user is participating
-            $activities = Activity::whereHas('participants', function ($query) {
-                $query->where('user_id', auth()->user()->id);
-            })->Where('start_date', '>', now())->get();
-
-        } elseif($request->input('all')) {
-            $activities = Activity::all();
-
-        } elseif($request->input('participating')) {
-            $activities = Activity::whereHas('participants', function ($query) {
-                $query->where('user_id', auth()->user()->id);
-            })->Where('start_date', '>', now())->get();
-                            
-        } elseif($request->input(null)) {
-            dd("null");
-        }
-        dd($activities);
-        return redirect()->route('activity.overview', ['activities' => $activities]);
     }
 
     public function create(): View
