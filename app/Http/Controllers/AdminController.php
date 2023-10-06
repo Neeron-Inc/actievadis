@@ -3,25 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class AdminController extends Controller
 {
-    public function index()
+    public function index(): View
     {
-        if (!auth()->user()->is_admin) {
-            abort(403);
-        }
         return view('admin.overview', [
             'users' => User::all()
         ]);
     }
 
-    public function update(User $user)
+    public function update(User $user): RedirectResponse
     {
-        if (!auth()->user()->is_admin) {
-            abort(403);
-        }
-
         $user->update([
             'is_admin' => !$user->is_admin
         ]);

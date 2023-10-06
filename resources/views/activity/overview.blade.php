@@ -2,18 +2,18 @@
 
 @section('content')
     {{-- hero --}}
-    <div class="w-full flex pt-20">
-        <section class="w-1/2 h-[750px] bg-[#F5AF00] rounded-r-[30px] pl-20">
+    <div class="w-full flex">
+        <section class="w-1/2 h-[85vh] bg-[#F5AF00] outline-[10px] outline outline-[#ffb907] rounded-br-[30px] pl-20">
             <div class="text-[#0F132F] mt-32 flex flex-col">
                 <h1 class="text-5xl ml-36">Activiteiten</h1>
                 {{-- card --}}
-                <main class="absolute mt-20 gap-10 flex">
-                    <section class="flex self-end">
-                        <div class="w-12 h-12 rounded-full border-2 cursor-pointer flex justify-center items-center mr-2 border-[#0F132F]" id="left">
-                            <img src="{{ asset("img/pijl.svg") }}" alt="" class="rotate-180">
+                <main class="absolute mt-20 gap-10 flex overflow-hidden">
+                    <section class="flex self-end select-none">
+                        <div class="w-12 h-12 hover:bg-[#0F132F] hover:text-[#F5AF00] ease-in-out transition-colors rounded-full border-2 cursor-pointer flex justify-center items-center mr-2 border-[#0F132F] rotate-180" id="left">
+                            <x-arrow-icon></x-arrow-icon>
                         </div>
-                        <div class="w-12 h-12 rounded-full border-2 cursor-pointer flex justify-center items-center border-[#0F132F]" id="right">
-                            <img src="{{ asset("img/pijl.svg") }}" alt="">
+                        <div class="w-12 h-12 hover:bg-[#0F132F] hover:text-[#F5AF00] ease-in-out transition-colors rounded-full border-2 cursor-pointer flex justify-center items-center border-[#0F132F]" id="right">
+                            <x-arrow-icon></x-arrow-icon>
                         </div>
                     </section>
                     <section class="flex gap-10" id="card-container">
