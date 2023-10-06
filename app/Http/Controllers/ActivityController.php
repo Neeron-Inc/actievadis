@@ -44,14 +44,17 @@ class ActivityController extends Controller
 
     public function show(Activity $activity): View
     {
-        if ($activity->needs)
+        if ($activity->needs) {
             $activity->needs = implode(", ", $activity->needs);
-
+        }
         return view('activity.show', ['activity' => $activity]);
     }
 
     public function edit(Activity $activity): View
     {
+        if ($activity->needs) {
+            $activity->needs = implode(", ", $activity->needs);
+        }
         $activity->start_date = $this->formatDate($activity->start_date);
         $activity->end_date = $this->formatDate($activity->end_date);
 

@@ -6,15 +6,18 @@
             <a href="{{ route('activity.overview') }}" class="text-[#f5af00] hover:text-[#0f132f] hover:bg-[#f5af00] ease-in-out transition-colors w-12 h-12 rounded-full border-2 cursor-pointer flex justify-center items-center mr-2 border-[#f5af00] rotate-180 absolute left-16"  href=""><x-arrow-icon></x-arrow-icon></a>
 
             <div class="w-2/3 pl-16 lg:pl-64">
-                <p class="text-[#f5af00] mt-[15%]">Samen met je collega's!</p>
-                <h2 class="text-5xl text-white pb-4">{{$activity->name}}</h2>
+                <p class="text-[#f5af00] mt-[15%]">
+                    Samen met je collega's!
+                </p>
+
+                <h2 class="text-5xl text-white pb-4">
+                    {{$activity->name}}
+                </h2>
+
                 <div class="text-white w-[130%] mb-8 flex flex-col">
-                    <p class="mb-2 flex items-center"><span class="text-[#f5af00] pr-1"><x-location-icon></x-location-icon></span> {{$activity->location}}
-                    </p>
-                    <p class="mb-2 flex items-center"><span class="fill-[#f5af00] pr-1"><x-food-icon></x-food-icon></span> {{$activity->food ? "Ja" : "Nee"}}
-                    </p>
-                    <p class="mb-2 flex items-center"><span class="text-[#f5af00] pr-1"><x-money-icon></x-money-icon></span>
-                        €{{$activity->price}}</p>
+                    <p class="mb-2 flex items-center"> <span class="text-[#f5af00] pr-1"><x-location-icon></x-location-icon></span> {{$activity->location}}</p>
+                    <p class="mb-2 flex items-center"><span class="fill-[#f5af00] pr-1"><x-food-icon></x-food-icon></span> {{$activity->food ? "Ja" : "Nee"}}</p>
+                    <p class="mb-2 flex items-center"><span class="text-[#f5af00] pr-1"><x-money-icon></x-money-icon></span> €{{$activity->price}}</p>
 
                     @if(date('d-m-Y', strtotime($activity->start_date)) == date('d-m-Y', strtotime($activity->end_date)))
                         <p class="mb-2 flex items-center"><span class="text-[#f5af00] pr-1"><x-clock-icon></x-clock-icon></span> {{ date('d-F-Y \o\m H:i', strtotime($activity->start_date)) }}
@@ -32,8 +35,12 @@
                         </p>
                     @endisset
 
-                    <p class="mb-6">{{$activity->description}}</p>
+                    <p class="mb-6">
+                        {{$activity->description}}
+                    </p>
+
                 </div>
+
                 <div class="pb-[15%] flex justify-content">
 
                     <livewire:participate :activity="$activity"/>
@@ -49,6 +56,7 @@
                             <x-delete-button></x-delete-button>
                         </form>
                     @endif
+
                 </div>
             </div>
 
