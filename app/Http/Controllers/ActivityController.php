@@ -13,13 +13,38 @@ use Illuminate\View\View;
 
 class ActivityController extends Controller
 {
-    public function index(): View
+    public function index(?Collection $activities = null): View
     {
-//        dd(request()->all());
+        if (!$activities) {
+            $activities = Activity::where('start_date', '>', now())->get();
+        }
 
         return view('activity.overview', [
-            'activities' => Activity::where('start_date', '>', now())->get(),
+            'activities' => $activities,
         ]);
+    }
+
+    public function filter()
+    {
+        $activities = null;
+
+        if (request()->input('all') == 'on' && request()->input('participating') == 'on') {
+            $activities = auth()->user()->activities();
+        }
+
+        if (request()->input('all') == 'on' && !request()->input('participating')) {
+            $activities = Activity::all();
+        }
+
+        if (request()->input('participating') == 'on' && !request()->input('all')) {
+            $activities = auth()->user()->activities();
+
+            $activities = $activities->filter(function ($activity) {
+                return $activity->start_date > now();
+            });
+        }
+
+        return $this->index($activities);
     }
 
     public function create(): View
