@@ -22,16 +22,4 @@ class Activity extends Model
     {
         return $this->hasMany(Participant::class);
     }
-
-    public function scopeUpcoming(Builder $query): Builder
-    {
-        return $query->where('start_date', '>', now());
-    }
-
-    public function scopeParticipating(Builder $query): Builder
-    {
-        return $query->whereHas('participants', function (Builder $query) {
-            $query->where('user_id', auth()->id());
-        });
-    }
 }
