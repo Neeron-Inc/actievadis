@@ -27,8 +27,7 @@
                             - {{ date('d-m-Y h:i', strtotime($activity->end_date)) }}</p>
                     @endif
 
-                    <p class="mb-2 flex items-center"><span class="text-[#f5af00] pr-1"><x-group-icon></x-group-icon></span> {{$activity->participants->count()}}
-                    </p>
+                    <livewire:participant-comments :activity="$activity"/>
 
                     @isset($activity->needs)
                         <p class="mb-2 flex items-center"><span class="text-[#f5af00] pr-1"><x-shopping-card-icon></x-shopping-card-icon></span> {{$activity->needs}}
@@ -64,4 +63,7 @@
 
         </article>
     </aside>
+    <script>
+
+    </script>
 @endsection
