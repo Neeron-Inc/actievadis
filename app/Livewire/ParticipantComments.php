@@ -11,10 +11,6 @@ class ParticipantComments extends Component
 {
     public bool $showModal = false;
     public Activity $activity;
-    public function participate(): void
-    {
-        $this->toggleShow();
-    }
 
     public function toggleShow(): void
     {
