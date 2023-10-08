@@ -1,5 +1,5 @@
 <main class="z-50">
-    <p wire:click="toggleShow" class="mb-2 flex items-center"><span class="text-[#f5af00] pr-1"><x-group-icon></x-group-icon></span> {{$activity->participants->count()}}
+    <p wire:click="toggleShow" class="mb-2 flex items-center"><span class="text-[#f5af00] pr-1"><x-group-icon></x-group-icon></span> {{$participants->count()}}
     </p>
 
     <section wire:click.away="toggleShow"
@@ -15,9 +15,9 @@
             </header>
 
             <div class="flex flex-col gap-6">
-                @foreach($activity->participants as $participant)
+                @foreach($participants as $participant)
                     <div class="flex gap-2 text-black">
-                        <p class="text-xl font-bold">{{ App\Models\User::find($participant->user_id)->name  }}</p>
+                        <p class="text-xl font-bold whitespace-nowrap">{{ $participant->user->name }}</p>
                         <p>{{$participant->comment}}</p>
                     </div>
                 @endforeach

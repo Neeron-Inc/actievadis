@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Activity;
+use App\Models\Participant;
 use Illuminate\View\View;
 use Livewire\Component;
 
@@ -22,8 +23,12 @@ class ParticipantComments extends Component
 
     public function render(): View
     {
-        return view('livewire.participant-comments', [
-            'participants' => $this->activity,
-        ]);
+        $activityId = $this->activity->id;
+
+        $participants = Participant::with('user')
+            ->where('activity_id', $activityId)
+            ->get();
+
+        return view('livewire.participant-comments', compact('participants'));
     }
 }
