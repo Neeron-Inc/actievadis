@@ -1,5 +1,5 @@
-<a href="{{ route('activity.show', $activity) }}" class="w-[20vw] bg-white transition-all ease-in-out shadow-lg relative" id="card" name="card">
-    <div class="w-full h-[40vh] bg-center flex justify-center items-center group overflow-hidden bg-cover relative" style="background-image: url({{ file_exists(public_path('storage/' . $activity->image)) ? asset("storage/" . $activity->image) : $activity->image }})">
+<a href="{{ route('activity.show', $activity) }}" class="w-[20vw] mb-5 bg-white transition-all ease-in-out shadow-lg relative" id="card" name="card">
+    <div loading="lazy" class="w-full h-[40vh] bg-center flex justify-center items-center group overflow-hidden bg-cover relative" style="background-image: url({{ file_exists(public_path('storage/' . $activity->image)) ? asset("storage/" . $activity->image) : $activity->image }})">
         <div class="w-full h-full flex justify-center items-center bg-gray-950 bg-opacity-0 group-hover:bg-opacity-40 ease-in-out transition-all">
             <div class="w-[7vw] h-[7vw] hidden group-hover:flex rounded-full bg-[#F5AF00] justify-center items-center">
                 <img src="{{ asset("img/pijl.svg") }}" alt="">
