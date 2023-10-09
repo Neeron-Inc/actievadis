@@ -1,31 +1,35 @@
 @extends('layouts.app')
 
 @section('content')
-    <main class="bg-[#F5aF00] m-6 rounded-md">
-        <h1 class="text-2xl">Beheerders</h1>
-        <table class="w-auto">
+    <main class="bg-white m-5 p-5 rounded-md">
+        <h1 class="text-2xl border-b-2 border-gray-50 pb-2">Gebruikers</h1>
+        <table class="w-full">
             <thead>
-            <tr>
-                <th class="px-4 py-2">Naam</th>
-                <th class="px-4 py-2">Email</th>
-                <th class="px-4 py-2">Beheerder</th>
-                <th class="px-4 py-2">Acties</th>
+            <tr class="border-b-2 border-gray-50">
+                <td class="px-4 py-2">Naam</td>
+                <td class="px-4 py-2">Email</td>
+                <td class="px-4 py-2">Acties</td>
             </tr>
             </thead>
             <tbody>
             @foreach ($users as $user)
-                <tr>
-                    <th class="px-4 py-2">{{$user->name}}</th>
+                <tr class="even:bg-white odd:bg-gray-50">
+                    <td class="px-4 py-2">{{$user->name}}</td>
                     <td class="px-4 py-2">{{$user->email}}</td>
-                    <td class="px-4 py-2">{{$user->is_admin ? __('Ja') : __('Nee')}}</td>
                     <td class="px-4 py-2">
                         <form action="{{ route('admin.toggle', $user) }}" method="POST">
                             @csrf
                             @method('PUT')
-                            <button type="submit"
-                                    class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                                {{$user->is_admin ? __('Verwijder beheerder') : __('Maak beheerder')}}
+                            @if ($user->is_admin)
+                            <button type="submit" class="bg-red-100 text-red-400 hover:bg-red-200 transition-colors ease-in-out font-bold py-2 px-4 rounded">
+                            Verwijder beheerder
                             </button>
+                            @else
+                            <button type="submit" class="bg-green-100 text-green-400 hover:bg-green-200 transition-colors ease-in-out font-bold py-2 px-4 rounded">
+                            Maak beheerder
+                            </button>
+                            @endif
+
                         </form>
                     </td>
                 </tr>
