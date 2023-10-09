@@ -53,11 +53,7 @@
                             <x-edit-button></x-edit-button>
                         </a>
 
-                        <form action="{{ route('activity.destroy', $activity) }}" method="POST">
-                            @csrf
-                            @method('delete')
-                            <x-delete-button></x-delete-button>
-                        </form>
+                        <livewire:softdelete :activity="$activity"/>
                     @endif
 
                 </div>
