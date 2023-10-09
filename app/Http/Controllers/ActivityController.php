@@ -72,7 +72,7 @@ class ActivityController extends Controller
             'max_participants' => $request->input('max_participants'),
             'min_participants' => $request->input('min_participants'),
             'image' => Storage::disk('public')->put('images', $request->file('image')),
-            'needs' => $request->input('needs') ? $this->jsonEncode($request->input('needs')) : null,
+            'needs' => $request->input('needs') ? $this->formatNeeds($request->input('needs')) : null,
         ]);
 
         return redirect()->route('activity.overview');
@@ -121,7 +121,7 @@ class ActivityController extends Controller
             'max_participants' => $request->input('max_participants'),
             'min_participants' => $request->input('min_participants'),
             'image' => $request->file('image') ? Storage::disk('public')->put('images', $request->file('image')) : $activity->image,
-            'needs' => $request->input('needs') ? $this->jsonEncode($request->input('needs')) : $activity->needs,
+            'needs' => $request->input('needs') ? $this->formatNeeds($request->input('needs')) : null,
         ]);
 
         return redirect()->route('activity.show', [
@@ -139,16 +139,14 @@ class ActivityController extends Controller
     {
         return date('Y-m-d', strtotime($date));
     }
-
-    public function jsonEncode(string $needs): array
-    {
-        $needs = json_encode($needs);
-        return explode(",", $needs);
-    }
-
     public function delete(Activity $activity): RedirectResponse
     {
         $activity->delete();
         return redirect()->route('activity.overview');
+    }
+
+    public function formatNeeds($needs): array
+    {
+        return explode(",", str_replace('"', '', $needs));
     }
 }
