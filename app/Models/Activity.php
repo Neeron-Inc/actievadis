@@ -21,4 +21,10 @@ class Activity extends Model
     {
         return $this->hasMany(Participant::class);
     }
+
+    public function is_participating(): bool
+    {
+        $user_id = auth()->user()->id;
+        return $this->participants()->where('user_id', $user_id)->exists();
+    }
 }
