@@ -16,6 +16,7 @@ function authRoutes()
     Route::controller(ActivityController::class)->group(function () {
         Route::get('/', 'index');
         Route::get('/activities', 'index')->name('activity.overview');
+        Route::post('/activities', 'filter')->name('activity.overview.filter');
         Route::post('/activity/{activity}/register', 'register')->name('activity.register');
         Route::middleware(Admin::class)->group(function () {
             Route::get('/activity/create', 'create')->name('activity.create');
