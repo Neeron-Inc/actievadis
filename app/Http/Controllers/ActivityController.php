@@ -76,7 +76,9 @@ class ActivityController extends Controller
         if ($activity->needs) {
             $activity->needs = implode(", ", $activity->needs);
         }
-        return view('activity.show', ['activity' => $activity]);
+        return view('activity.show', [
+            'activity' => $activity,
+        ]);
     }
 
     public function edit(Activity $activity): View
@@ -87,7 +89,9 @@ class ActivityController extends Controller
         $activity->start_date = $this->formatDate($activity->start_date);
         $activity->end_date = $this->formatDate($activity->end_date);
 
-        return view('activity.edit', ['activity' => $activity]);
+        return view('activity.edit', [
+            'activity' => $activity,
+        ]);
     }
 
     public function update(Activity $activity, Request $request): RedirectResponse
@@ -106,7 +110,9 @@ class ActivityController extends Controller
             'needs' => $request->input('needs') ? $this->jsonEncode($request->input('needs')) : $activity->needs,
         ]);
 
-        return redirect()->route('activity.show', ['activity' => $activity]);
+        return redirect()->route('activity.show', [
+            'activity' => $activity,
+        ]);
     }
 
 
