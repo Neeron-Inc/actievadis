@@ -54,7 +54,6 @@ class ActivityController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
-
         $request->validate([
             'start_date' => 'required|before:end_date',
             'end_date' => 'required|after:start_date',
