@@ -30,10 +30,16 @@
                 </div>
                 <div class="form-group">
                     <label for="start_date">start datum</label>
+                    @error('start_date')
+                    <div class="text-red-500">moet voor eind datum zijn</div>
+                    @enderror
                     <input type="datetime-local" class="form-control" id="start_date" name="start_date" required>
                 </div>
                 <div class="form-group">
                     <label for="end_date">eind datum</label>
+                    @error('end_date')
+                    <div class="text-red-500">moet na start datum zijn</div>
+                    @enderror
                     <input type="datetime-local" class="form-control" id="end_date" name="end_date" required>
                 </div>
                 <div class="form-group">
@@ -49,10 +55,16 @@
                 </div>
                 <div class="form-group">
                     <label for="min_participants">minimale deelnemers</label>
+                    @error('min_participants')
+                    <div class="text-red-500">moet kleiner zijn dan maximale deelnemers</div>
+                    @enderror
                     <input type="number" class="form-control" id="min_participants" name="min_participants" required>
                 </div>
                 <div class="form-group">
                     <label for="max_participants">maximale deelnemers</label>
+                    @error('max_participants')
+                    <div class="text-red-500">groter zijn dan minimale deelnemers</div>
+                    @enderror
                     <input type="number" class="form-control" id="max_participants" name="max_participants" required>
                 </div>
                 <div class="form-group col-span-2">
