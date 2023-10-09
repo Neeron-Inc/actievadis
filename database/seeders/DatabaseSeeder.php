@@ -14,12 +14,12 @@ class DatabaseSeeder extends Seeder
 
         Activity::factory()->create([
             'name' => 'Voetbal',
-            'description' => 'Voetballen met collega\'s bij de ploeg',
+            'description' => 'Voetballen met collega\'s bij de Graafschap',
             'location' => 'De ploeg',
             'price' => 10,
             'start_date' => now()->subDay()->midDay(),
             'end_date' => now()->subDay()->midDay()->addHours(2),
-            'image' => 'https://images0.persgroep.net/rcs/APdH1hsz-TKpOXZDJfGa00NTWBU/diocontent/235418503/_fitwidth/694/?appId=21791a8992982cd8da851550a453bd7f&quality=0.8'
+            'image' => 'https://media.nu.nl/m/77wx5foappan_wd854/voetbal-eredivisie.jpg'
         ]);
 
         Activity::factory()->create([
@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
             'price' => 0,
             'start_date' => now()->midDay(),
             'end_date' => now()->midDay()->addHours(2),
-            'image' => 'https://www.dartshopper.nl/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/d/a/dartbord-unicorn-eclipse-pro-2-1.jpg'
+            'image' => 'https://upload.wikimedia.org/wikipedia/commons/f/fb/Darts_in_a_dartboard.jpg'
         ]);
 
         Activity::factory()->create([
