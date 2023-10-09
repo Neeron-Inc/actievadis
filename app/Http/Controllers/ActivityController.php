@@ -16,7 +16,7 @@ class ActivityController extends Controller
     public function index(?Collection $activities = null): View
     {
         if (!$activities) {
-            $activities = Activity::where('start_date', '>', now())->get();
+            $activities = Activity::with('participants')->where('start_date', '>', now())->get();
         }
 
         return view('activity.overview', [
@@ -108,7 +108,6 @@ class ActivityController extends Controller
 
         return redirect()->route('activity.show', ['activity' => $activity]);
     }
-
 
     public function destroy(Activity $activity): RedirectResponse
     {
