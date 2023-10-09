@@ -4,6 +4,7 @@ namespace App\Traits;
 
 use App\Models\Activity;
 use App\Models\Participant;
+use Exception;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -29,6 +30,10 @@ trait CanParticipate
 
     public function participate(Activity $activity, string $comment = null): Participant
     {
+        if ($activity->participants()->count() >= $activity->max_participants) {
+            throw new Exception('Maximum number of participants reached');
+        }
+
         return $this->participants()->create([
             'activity_id' => $activity->id,
             'comment' => $comment,

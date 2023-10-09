@@ -54,6 +54,14 @@ class ActivityController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
+
+        $request->validate([
+            'start_date' => 'required|before:end_date',
+            'end_date' => 'required|after:start_date',
+            'max_participants' => 'required|gt:min_participants',
+            'min_participants' => 'required|lt:max_participants',
+        ]);
+
         Activity::create([
             'name' => $request->input('name'),
             'description' => $request->input('description'),
@@ -96,6 +104,13 @@ class ActivityController extends Controller
 
     public function update(Activity $activity, Request $request): RedirectResponse
     {
+        $request->validate([
+            'start_date' => 'required|before:end_date',
+            'end_date' => 'required|after:start_date',
+            'max_participants' => 'required|gt:min_participants',
+            'min_participants' => 'required|lt:max_participants',
+        ]);
+
         $activity->update([
             'name' => $request->input('name'),
             'description' => $request->input('description'),
