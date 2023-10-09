@@ -63,7 +63,4 @@
 
         </article>
     </aside>
-    <script>
-
-    </script>
 @endsection
