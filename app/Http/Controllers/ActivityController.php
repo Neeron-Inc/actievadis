@@ -54,12 +54,7 @@ class ActivityController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
-        $request->validate([
-            'start_date' => 'required|before:end_date',
-            'end_date' => 'required|after:start_date',
-            'max_participants' => 'required|gt:min_participants',
-            'min_participants' => 'required|lt:max_participants',
-        ]);
+        $this->validateRequest($request);
 
         Activity::create([
             'name' => $request->input('name'),
@@ -103,12 +98,7 @@ class ActivityController extends Controller
 
     public function update(Activity $activity, Request $request): RedirectResponse
     {
-        $request->validate([
-            'start_date' => 'required|before:end_date|after:now',
-            'end_date' => 'required|after:start_date|after:now',
-            'max_participants' => 'required|gt:min_participants|gt:1',
-            'min_participants' => 'required|lt:max_participants|gt:1',
-        ]);
+        $this->validateRequest($request);
 
         $activity->update([
             'name' => $request->input('name'),
@@ -139,6 +129,13 @@ class ActivityController extends Controller
     {
         return date('Y-m-d\TH:i', strtotime($date));
     }
+
+    public function jsonEncode(string $needs): array
+    {
+        $needs = json_encode($needs);
+        return explode(",", $needs);
+    }
+
     public function delete(Activity $activity): RedirectResponse
     {
         $activity->delete();
@@ -148,5 +145,15 @@ class ActivityController extends Controller
     public function formatNeeds($needs): array
     {
         return explode(",", str_replace('"', '', $needs));
+    }
+
+    public function validateRequest($request): void
+    {
+        $request->validate([
+            'start_date' => 'required|before:end_date',
+            'end_date' => 'required|after:start_date',
+            'max_participants' => 'required|gt:min_participants',
+            'min_participants' => 'required|lt:max_participants|gt:1',
+        ]);
     }
 }
