@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <aside class="py-16 bg-[#0f132f] w-10/12 lg:w-4/6 outline outline-[10px] outline-[#1b1f42] rounded-br-[30px]">
+    <aside class="py-16 bg-[#0f132f] w-10/12 lg:w-4/6 outline outline-[2px] outline-[#1b1f42] rounded-br-[30px]">
         <article class="text-xl flex">
             <a href="{{ route('activity.overview') }}" class="text-[#f5af00] hover:text-[#0f132f] hover:bg-[#f5af00] ease-in-out transition-colors w-12 h-12 rounded-full border-2 cursor-pointer flex justify-center items-center mr-2 border-[#f5af00] rotate-180 absolute left-16"  href=""><x-arrow-icon></x-arrow-icon></a>
 

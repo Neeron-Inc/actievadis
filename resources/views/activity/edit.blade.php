@@ -87,14 +87,12 @@
 
                 <div class="form-group col-span-2">
                     <label for="description">omschrijving</label>
-                    <input type="text" class="form-control" id="description" name="description"
-                           value="{{ old('description', $activity->description) }}" required/>
+                    <textarea type="text" class="form-control" id="description" name="description" value="{{ old('description', $activity->description) }}" required></textarea>
                 </div>
 
                 <div class="form-group col-span-2">
                     <label for="needs">benodigdheden</label>
-                    <input type="text" class="form-control" id="needs" name="needs"
-                           value="{{ old('needs', $activity->needs) }}"/>
+                    <textarea type="text" class="form-control" id="needs" name="needs" value="{{ old('needs', $activity->needs) }}"></textarea>
                 </div>
 
                 <button type="submit" class="btn btn-primary w-auto px-4 py-2 border-2 border-black">bijwerken</button>
