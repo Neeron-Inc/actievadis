@@ -54,12 +54,7 @@ class ActivityController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
-        $request->validate([
-            'start_date' => 'required|before:end_date',
-            'end_date' => 'required|after:start_date',
-            'max_participants' => 'required|gt:min_participants',
-            'min_participants' => 'required|lt:max_participants',
-        ]);
+        $this->validateRequest($request);
 
         Activity::create([
             'name' => $request->input('name'),
@@ -72,7 +67,7 @@ class ActivityController extends Controller
             'max_participants' => $request->input('max_participants'),
             'min_participants' => $request->input('min_participants'),
             'image' => Storage::disk('public')->put('images', $request->file('image')),
-            'needs' => $request->input('needs') ? $this->jsonEncode($request->input('needs')) : null,
+            'needs' => $request->input('needs') ? $this->formatNeeds($request->input('needs')) : null,
         ]);
 
         return redirect()->route('activity.overview');
@@ -103,12 +98,7 @@ class ActivityController extends Controller
 
     public function update(Activity $activity, Request $request): RedirectResponse
     {
-        $request->validate([
-            'start_date' => 'required|before:end_date',
-            'end_date' => 'required|after:start_date',
-            'max_participants' => 'required|gt:min_participants',
-            'min_participants' => 'required|lt:max_participants',
-        ]);
+        $this->validateRequest($request);
 
         $activity->update([
             'name' => $request->input('name'),
@@ -121,7 +111,7 @@ class ActivityController extends Controller
             'max_participants' => $request->input('max_participants'),
             'min_participants' => $request->input('min_participants'),
             'image' => $request->file('image') ? Storage::disk('public')->put('images', $request->file('image')) : $activity->image,
-            'needs' => $request->input('needs') ? $this->jsonEncode($request->input('needs')) : $activity->needs,
+            'needs' => $request->input('needs') ? $this->formatNeeds($request->input('needs')) : null,
         ]);
 
         return redirect()->route('activity.show', [
@@ -137,7 +127,7 @@ class ActivityController extends Controller
 
     public function formatDate($date): string
     {
-        return date('Y-m-d', strtotime($date));
+        return date('Y-m-d\TH:i', strtotime($date));
     }
 
     public function jsonEncode(string $needs): array
@@ -150,5 +140,20 @@ class ActivityController extends Controller
     {
         $activity->delete();
         return redirect()->route('activity.overview');
+    }
+
+    public function formatNeeds($needs): array
+    {
+        return explode(",", str_replace('"', '', $needs));
+    }
+
+    public function validateRequest($request): void
+    {
+        $request->validate([
+            'start_date' => 'required|before:end_date',
+            'end_date' => 'required|after:start_date',
+            'max_participants' => 'required|gt:min_participants',
+            'min_participants' => 'required|lt:max_participants|gt:1',
+        ]);
     }
 }
