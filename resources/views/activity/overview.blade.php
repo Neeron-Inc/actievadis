@@ -79,7 +79,6 @@
 
             document.onscroll = function() {
                 var scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
-                console.log(scrollTop)
 
                 if(scrollTop == 0) {
                     document.querySelector("#card-container").style.flexWrap = "nowrap"
@@ -89,6 +88,7 @@
                 } else {
                     cards.forEach( (i) => {
                     if(i.name != "1" && i.name != "2" && i.name != "3" && i.name != "4" && scroll == false) {
+                        i.classList.remove("ease-in-out", "transition-all")
                         i.style.opacity = "0"
                     }
                     })
@@ -107,6 +107,7 @@
         function showcard() {
             for(let a = 0; a < count; a++) {
                 setTimeout(() => {
+                    cards[a].classList.add("ease-in-out", "transition-all")
                     cards[a].style.opacity = "100"
                 }, (125 * a));
             }

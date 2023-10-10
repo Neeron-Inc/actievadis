@@ -1,9 +1,9 @@
-<main class="z-50">
+<main>
     <x-delete-button></x-delete-button>
     <section wire:click.away="toggleShow"
-             class="@if (!$showModal)hidden @endif fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+             class="@if (!$showModal)hidden @endif fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
 
-             <content class="bg-white rounded-lg w-1/4 p-4 pt-2">
+        <content class="bg-white rounded-lg w-1/4 p-4 pt-2">
             <header class="flex justify-between items-center">
                 <h2 class="text-2xl font-bold text-black mb-2">Deze activiteit verwijderen?</h2>
 
