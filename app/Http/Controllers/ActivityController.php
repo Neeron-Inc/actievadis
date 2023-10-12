@@ -24,7 +24,7 @@ class ActivityController extends Controller
         ]);
     }
 
-    public function filter()
+    public function filter(): View
     {
         $activities = null;
 
