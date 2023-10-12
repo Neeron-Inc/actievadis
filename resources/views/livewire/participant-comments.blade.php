@@ -1,5 +1,9 @@
 <main class="z-50">
-    <p @if(auth()->user()->is_admin) wire:click="toggleShow" @endif class="@if(auth()->user()->is_admin) cursor-pointer @endif mb-2 flex items-center"><span class="text-[#f5af00] pr-1"><x-group-icon></x-group-icon></span> {{$participants->count()}}
+    <p @if(auth()->user()->is_admin) wire:click="toggleShow"
+       @endif class="@if(auth()->user()->is_admin) cursor-pointer @endif mb-2 flex items-center"><span
+            class="text-[#f5af00] pr-1"><x-group-icon></x-group-icon></span> {{$participants->count()}}
+        van de {{$activity->max_participants}} deelnemers
+    </p>
     </p>
     @if(auth()->user()->is_admin)
         <section wire:click.away="toggleShow"
@@ -26,7 +30,7 @@
                             <p class="text-sm">{{$participant->comment}}</p>
                         </div>
                     @endforeach
-                    
+
                 </div>
             </content>
         </section>
