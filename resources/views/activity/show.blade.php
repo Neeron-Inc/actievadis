@@ -13,7 +13,7 @@
                 <h2 class="text-5xl text-white pb-4">
                     {{$activity->name}}
                 </h2>
-+
+
                 <div class="text-white w-[130%] mb-8 flex flex-col">
                     <p class="mb-2 flex items-center"> <span class="text-[#f5af00] pr-1"><x-location-icon></x-location-icon></span> {{$activity->location}}</p>
                     <p class="mb-2 flex items-center"><span class="fill-[#f5af00] pr-1"><x-food-icon></x-food-icon></span> {{$activity->food ? "Ja" : "Nee"}}</p>
