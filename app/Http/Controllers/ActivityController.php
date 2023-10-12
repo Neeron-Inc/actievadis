@@ -130,18 +130,6 @@ class ActivityController extends Controller
         return date('Y-m-d\TH:i', strtotime($date));
     }
 
-    public function jsonEncode(string $needs): array
-    {
-        $needs = json_encode($needs);
-        return explode(",", $needs);
-    }
-
-    public function delete(Activity $activity): RedirectResponse
-    {
-        $activity->delete();
-        return redirect()->route('activity.overview');
-    }
-
     public function formatNeeds($needs): array
     {
         return explode(",", str_replace('"', '', $needs));
