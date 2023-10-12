@@ -14,7 +14,7 @@ Route::middleware([
 function authRoutes()
 {
     Route::controller(ActivityController::class)->group(function () {
-        Route::get('/', 'index');
+        Route::get('/', fn() => redirect()->route('activity.overview'));
         Route::get('/activities', 'index')->name('activity.overview');
         Route::post('/activities', 'filter')->name('activity.overview.filter');
         Route::post('/activity/{activity}/register', 'register')->name('activity.register');
