@@ -15,6 +15,7 @@ class Activity extends Model
 
     protected $casts = [
         'needs' => 'array',
+        'start_date' => 'date'
     ];
 
     public function participants(): HasMany

@@ -17,7 +17,8 @@
         @endif
     </div>
     <div class="text-center py-4 px-8 bg-white">
-        <h6 class="text-[#0F132F] mb-1">{{ $activity->name }}</h6>
+        <h6 class="text-[#0F132F]">{{ $activity->name }}</h6>
+        <span class="text-sm text-[#717696]">{{ $activity->start_date->diffForHumans() }}</span>
         <p class="text-xs text-[#717696]">
             {{ $activity->description }}
         </p>
