@@ -18,8 +18,6 @@
 
             <form action="{{ route('activity.overview.filter') }}" method="POST" class="flex flex-col items-center">
                 @csrf
-
-
                 <section class="flex justify-around w-full">
                     <div class="flex">
                         <label class="relative inline-flex items-center cursor-pointer">
