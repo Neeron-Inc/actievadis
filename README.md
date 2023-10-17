@@ -2,6 +2,7 @@
 
 ## Project voor school door Neeron Inc. 
 Laravel applicatie om activiteiten in te zien en te beheren.<br>
+In opdracht voor Hybride Onderwijs, Software Development Jaar 3
 
 
 ## Contributers
