@@ -62,6 +62,36 @@ class DatabaseSeeder extends Seeder
             'image' => 'https://www.ypc.co.uk/wp-content/uploads/2023/04/paintball-artwork.jpg'
         ]);
 
+        Activity::factory()->create([
+            'name' => 'Golfen',
+            'description' => 'Golfen met collega\'s bij golfbaan Pitch and Put',
+            'location' => 'Golfbaan Pitch and Put',
+            'price' => 25,
+            'start_date' => now()->addDays(20)->midDay(),
+            'end_date' => now()->addDays(20)->midDay()->addHours(2),
+            'image' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu6z-dIH7CMsbl1av1-TeJrwGeId0pdunF6w&usqp=CAU'
+        ]);
+
+        Activity::factory()->create([
+            'name' => 'Tennis',
+            'description' => 'Tennissen met collega\'s bij tennisvereniging De Hellekens',
+            'location' => 'Tennisvereniging De Hellekens',
+            'price' => 10,
+            'start_date' => now()->addDays(25)->midDay(),
+            'end_date' => now()->addDays(25)->midDay()->addHours(2),
+            'image' => 'https://www.politico.eu/cdn-cgi/image/width=1160,height=574,quality=80,onerror=redirect,format=auto/wp-content/uploads/2023/07/06/GettyImages-1511167156.png'
+        ]);
+
+        Activity::factory()->create([
+            'name' => 'Lan party',
+            'description' => 'Lan party met collega\'s bij op kantoor',
+            'location' => 'Kantoor',
+            'price' => 0,
+            'start_date' => now()->addDays(30)->midDay(),
+            'end_date' => now()->addDays(30)->midDay()->addHours(2),
+            'image' => 'https://images.nvidia.com/geforce/sites/default/files-world/attachments/lan-1.png'
+        ]);
+
         User::factory(1)->create([
             'name' => 'David Klantmeneer',
             'email' => 'admin@neeron.com',
