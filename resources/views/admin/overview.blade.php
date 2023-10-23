@@ -17,20 +17,27 @@
                     <td class="px-4 py-2">{{$user->name}}</td>
                     <td class="px-4 py-2">{{$user->email}}</td>
                     <td class="px-4 py-2">
-                        <form action="{{ route('admin.toggle', $user) }}" method="POST">
-                            @csrf
-                            @method('PUT')
-                            @if ($user->is_admin)
-                            <button type="submit" class="bg-red-100 text-red-400 hover:bg-red-200 transition-colors ease-in-out font-bold py-2 px-4 rounded">
-                            Verwijder beheerder
-                            </button>
-                            @else
-                            <button type="submit" class="bg-green-100 text-green-400 hover:bg-green-200 transition-colors ease-in-out font-bold py-2 px-4 rounded">
-                            Maak beheerder
-                            </button>
-                            @endif
-
-                        </form>
+                        @if($user->id == Auth::user()->id)
+                            <p class="text-gray-400 font-bold py-2 px-4">
+                                Niet beschikbaar
+                            </p>
+                        @else
+                            <form action="{{ route('admin.toggle', $user) }}" method="POST">
+                                @csrf
+                                @method('PUT')
+                                @if ($user->is_admin)
+                                    <button type="submit"
+                                            class="bg-red-100 text-red-400 hover:bg-red-200 transition-colors ease-in-out font-bold py-2 px-4 rounded">
+                                        Verwijder beheerder
+                                    </button>
+                                @else
+                                    <button type="submit"
+                                            class="bg-green-100 text-green-400 hover:bg-green-200 transition-colors ease-in-out font-bold py-2 px-4 rounded">
+                                        Maak beheerder
+                                    </button>
+                                @endif
+                            </form>
+                        @endif
                     </td>
                 </tr>
             @endforeach
