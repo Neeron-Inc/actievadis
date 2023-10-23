@@ -16,6 +16,8 @@ class ActivityFactory extends Factory
      */
     public function definition(): array
     {
+        $minParticipants = $this->faker->numberBetween(1, 30);
+        $maxParticipants = $this->faker->numberBetween($minParticipants, 30);
         return [
             'name' => $this->faker->word,
             'description' => $this->faker->text,
@@ -24,8 +26,8 @@ class ActivityFactory extends Factory
             'end_date' => $this->faker->dateTimeBetween('-1 month', '+1 month'),
             'food' => $this->faker->boolean,
             'price' => $this->faker->randomFloat(2),
-            'max_participants' => $this->faker->randomNumber,
-            'min_participants' => $this->faker->randomNumber,
+            'max_participants' => $maxParticipants,
+            'min_participants' => $minParticipants,
             'image' => $this->faker->imageUrl(),
         ];
     }
